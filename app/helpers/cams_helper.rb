@@ -1,0 +1,2 @@
+module CamsHelper
+end

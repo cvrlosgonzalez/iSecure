@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @cam.title %>
+</p>
+
+<p>
+  <strong>Alert:</strong>
+  <%= @cam.alert %>
+</p>
+
+<%= link_to 'Edit', edit_cam_path(@cam) %> |
+<%= link_to 'Back', cams_path %>
