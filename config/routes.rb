@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'alerts/index'
+
   devise_for :users
   resources :cams
 
