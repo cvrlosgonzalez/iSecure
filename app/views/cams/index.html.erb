@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Nest Cams</h1>
+<h2>Nest Cams</h2>
 
 <table>
   <thead>
@@ -16,9 +16,9 @@
       <tr>
         <td><%= cam.title %></td>
         <td><%= cam.alert %></td>
-        <td><%= link_to 'Show', cam %></td>
+        <td><%= link_to 'Alerts', cam %></td>
         <td><%= link_to 'Edit', edit_cam_path(cam) %></td>
-        <td><%= link_to 'Destroy', cam, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Remove', cam, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Cam', new_cam_path %>
+<%= link_to 'Add Cam', new_cam_path %>
