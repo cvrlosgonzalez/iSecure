@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  last_event: MyString
+  web_url: MyString
+  image_url: MyString
+  animated_url: MyString
+  belongs_to: 
+
+two:
+  last_event: MyString
+  web_url: MyString
+  image_url: MyString
+  animated_url: MyString
+  belongs_to: 

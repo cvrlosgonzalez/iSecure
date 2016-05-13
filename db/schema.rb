@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160511233550) do
+ActiveRecord::Schema.define(version: 20160513223649) do
+
+  create_table "alerts", force: :cascade do |t|
+    t.string   "last_event"
+    t.string   "web_url"
+    t.string   "image_url"
+    t.string   "animated_url"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "cams", force: :cascade do |t|
     t.string   "title"
