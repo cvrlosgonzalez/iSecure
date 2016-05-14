@@ -6,4 +6,15 @@ class AlertsController < ApplicationController
   def new
     @alerts = Alert.new
   end
+
+
+  def poll_alert
+
+  end
+
+  def compare_alert
+    
+  end
+
+
 end
