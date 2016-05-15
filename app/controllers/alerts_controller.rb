@@ -14,10 +14,6 @@ require 'pp'
     p "end if init"
   end
 
-  def create
-
-  end
-
 
 
 end
