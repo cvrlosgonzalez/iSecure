@@ -10,5 +10,18 @@
   <%= @cam.alert %>
 </p>
 
+<div id="monitor_status" style="display:none">
+    Montior text holder
+</div>
+
+
+<p>
+  Turn on Alert monitor to receive alerts.<br>
+  Yes, receive alerts <%= radio_button_tag(:monitor, "on" ,true, class: "monitor_toggle") %> <br>
+  No, turn off alerts <%= radio_button_tag(:monitor, "off",true, class: "monitor_toggle") %><br>
+</p>
+
+
+
 <%= link_to 'Edit', edit_cam_path(@cam) %> |
 <%= link_to 'Back', cams_path %>

@@ -4,7 +4,18 @@ Rails.application.routes.draw do
   devise_for :users
   resources :cams
 
+
   root to: "cams#index"
+  # get 'monitor/ON' => 'monitor#monitor_on'
+  # get 'monitor/OFF' => 'monitor#monitor_off'
+  # get '/monitor/ON' => 'monitor#monitor_on', as: :monitor_on
+  get '/monitor_on' => 'monitor#monitor_on', as: :monitor_on
+  get '/monitor_off' => 'monitor#monitor_off', as: :monitor_off
+
+  # root :to => "pages#show", :id => 3
+  # get 'cam_alert/OFF' => 'alerts#monitor_off'
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

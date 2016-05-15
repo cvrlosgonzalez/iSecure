@@ -14,3 +14,18 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$( document ).ready(function() {
+    $('.monitor_toggle').on("click", function(){
+      var monId = $(this).attr('id');
+      var monVal = $(this).attr('value')
+    $.ajax({
+        url: "/monitor_"+monVal
+        // type: 'GET'
+    })
+      .done(function() {
+        $('#monitor_status').text("The monitor is set to: " + monVal.toUpperCase());
+        $('#monitor_status').css("display", "block");
+      })
+    });
+});
