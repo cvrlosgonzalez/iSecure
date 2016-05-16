@@ -9,8 +9,5 @@ class MonitorController < ApplicationController
       p "Monitor is OFF from method!!"
       redirect_to cams_path
     end
-
-
-
-
+    
 end
