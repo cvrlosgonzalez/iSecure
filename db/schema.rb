@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160513223649) do
+ActiveRecord::Schema.define(version: 20160516212600) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20160513223649) do
     t.string   "animated_url"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.integer  "cam_id"
   end
 
   create_table "cams", force: :cascade do |t|
@@ -31,6 +32,8 @@ ActiveRecord::Schema.define(version: 20160513223649) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "user_id"
+    t.boolean  "monitoring"
+    t.string   "api_name"
   end
 
   add_index "cams", ["user_id"], name: "index_cams_on_user_id", using: :btree
