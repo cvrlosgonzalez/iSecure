@@ -12,22 +12,20 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require_tree .
-  $( document ).ready(function() {
-      // $('#activate').delegate('.monitor_toggle', 'click', function() {
-      $('.monitor_toggle').on("click", function(){
-      // $('#activate').on('click', '.monitor_toggle', function(){
-        console.log("click works");
-        var monId = $(this).attr('id');
-        var monVal = $(this).attr('value')
-      $.ajax({
-          url: "/monitor_"+monVal
-          // type: 'GET'
+
+$( document ).ready(function() {
+  console.info("TESTING");
+    $('.monitor_toggle').on("click", function(){
+      console.log("click works");
+      var monId = $(this).attr('id');
+      var monVal = $(this).attr('value')
+    $.ajax({
+        url: "/monitor_"+monVal
+    })
+      .done(function() {
+        $('#monitor_status').text("The monitor is set to: " + monVal.toUpperCase());
+        $('#monitor_status').css("display", "block");
       })
-        .done(function() {
-          $('#monitor_status').text("The monitor is set to: " + monVal.toUpperCase());
-          $('#monitor_status').css("display", "block");
-        })
-      });
-  });
+    });
+});
