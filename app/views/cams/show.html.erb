@@ -15,13 +15,15 @@
 </div>
 
 
-<p>
-  Turn on Alert monitor to receive alerts.<br>
-  Yes, receive alerts <%= radio_button_tag(:monitor, "on" ,true, class: "monitor_toggle") %> <br>
-  No, turn off alerts <%= radio_button_tag(:monitor, "off",true, class: "monitor_toggle") %><br>
+<p id="activate">
+  Turn on Alert monitor to save alerts.<br>
+  Yes, save alerts <%= radio_button_tag(:monitor, "on" ,true, class: "monitor_toggle") %> <br>
+  No, don't save alerts <%= radio_button_tag(:monitor, "off",true, class: "monitor_toggle") %><br>
 </p>
 
 
 
 <%= link_to 'Edit', edit_cam_path(@cam) %> |
 <%= link_to 'Back', cams_path %>
+
+<%= @cam.alerts.to_a %>
