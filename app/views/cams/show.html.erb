@@ -34,10 +34,15 @@
 </p>
 </div>
 
+<div id="anilerts">
+<% @u = Alert.all %>
+<% @anilerts = @u.map {|alert| alert.animated_url } %>
+<% @anilerts.each do |x| %>
+  <a href="<%=x%>"><img src="<%= x %>" alt="" /></a>
+  <% end %>
+</div>
 
+  <%= link_to 'Edit', edit_cam_path(@cam) %> |
+  <%= link_to 'Back', cams_path %>
 
-<%= link_to 'Edit', edit_cam_path(@cam) %> |
-<%= link_to 'Back', cams_path %>
-
-<%= @cam.alerts.to_a %>
-<script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+  <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
