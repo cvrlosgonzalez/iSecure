@@ -10,9 +10,7 @@
   <%= @cam.alert %>
 </p>
 
-<div id="monitor_status" style="display:none">
-    Montior text holder
-</div>
+
 
 <div id ="cam_status">
   cam status of on or off will replace this text and make it visible.
@@ -27,6 +25,9 @@
 </div>
 
 <div class="manage">
+  <div id="monitor_status" style="display:none">
+      Montior text holder
+  </div>
 <p id="activate">
   Do you want to save motion alerts?<br>
   Yes, save alerts <%= radio_button_tag(:monitor, "on" ,false, class: "monitor_toggle") %> <br>
@@ -34,12 +35,11 @@
 </p>
 </div>
 
-<div id="show_alerts">
+<div id="alerts_container">
 <%= paginate @alerts   %><br>
 <% @anilerts = @alerts.map {|alert| alert.image_url } %>
-
 <% @anilerts.reverse.each do |x| %>
-  <a href="<%=x%>" target="_blank"><img src="<%= x %>" alt="" /></a>
+  <a href="<%=x%>" target="_blank" class="alert_photos"><img src="<%= x %>" alt="" /></a>
   <% end %>
 </div>
 
