@@ -35,15 +35,17 @@
 </p>
 </div>
 
+<%= link_to 'Edit Cam Description', edit_cam_path(@cam) %> |
+<%= link_to 'List all Cameras', cams_path %>
+
 <div id="alerts_container">
 <%= paginate @alerts   %><br>
 <% @anilerts = @alerts.map {|alert| alert.image_url } %>
 <% @anilerts.reverse.each do |x| %>
-  <a href="<%=x%>" target="_blank" class="alert_photos"><img src="<%= x %>" alt="" /></a>
+  <a href="<%=x%>" target="_blank" ><img src="<%= x %>" alt="" class="alert_photos" /></a>
   <% end %>
 </div>
 
-  <%= link_to 'Edit', edit_cam_path(@cam) %> |
-  <%= link_to 'Back', cams_path %>
+
 
   <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
