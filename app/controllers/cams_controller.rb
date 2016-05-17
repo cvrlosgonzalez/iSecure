@@ -5,13 +5,15 @@ class CamsController < ApplicationController
   # GET /cams.json
   def index
     @cams = Cam.all
+    # @alerts = Alert.all.find_by(cam_id: params[:id]).page(params[:page]).per(12)
   end
 
   # GET /cams/1
   # GET /cams/1.json
   def show
-    # @alerts = Alert.order(:created_at).page params[:page]
-     @alerts = Alert.page(params[:page]).per(12)
+    @alerts = Alert.order(:created_at).page params[:page]
+    # raise
+    #  @alerts = Alert.page(params[:page]).per(12)
   end
 
   # GET /cams/new
