@@ -10,6 +10,8 @@ class CamsController < ApplicationController
   # GET /cams/1
   # GET /cams/1.json
   def show
+    # @alerts = Alert.order(:created_at).page params[:page]
+     @alerts = Alert.page(params[:page]).per(12)
   end
 
   # GET /cams/new
