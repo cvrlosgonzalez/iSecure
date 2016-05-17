@@ -39,13 +39,14 @@
 <%= link_to 'List all Cameras', cams_path %>
 
 <div id="alerts_container">
-<%= paginate @alerts   %><br>
-<% @anilerts = @alerts.map {|alert| alert.image_url } %>
-<% @anilerts.reverse.each do |x| %>
-  <a href="<%=x%>" target="_blank" ><img src="<%= x %>" alt="" class="alert_photos" /></a>
+  <%= paginate @alerts %><br>
+  <% @alerts.each do |alert|  %>
+    <div id="<%= alert.id %>">
+      <%= alert.created_at.in_time_zone("Eastern Time (US & Canada)") %><br>
+      <a href="<%=alert.animated_url%>" target="_blank" ><img src="<%= alert.image_url %>" alt="" class="alert_photos" /></a>
+    </div>
   <% end %>
 </div>
 
 
-
-  <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+<script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
