@@ -37,7 +37,7 @@
 <div id="anilerts">
 <% @u = Alert.all %>
 <% @anilerts = @u.map {|alert| alert.animated_url } %>
-<% @anilerts.each do |x| %>
+<% @anilerts.reverse.each do |x| %>
   <a href="<%=x%>" target="_blank"><img src="<%= x %>" alt="" /></a>
   <% end %>
 </div>
