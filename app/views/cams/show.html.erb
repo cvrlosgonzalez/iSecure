@@ -28,7 +28,7 @@
 <% @u = Alert.all %>
 <% @anilerts = @u.map {|alert| alert.animated_url } %>
 <% @anilerts.each do |x| %>
-  <a href="<%=x%>"><img src="<%= x %>" alt="" /></a>
+  <a href="<%=x%>" target="_blank"><img src="<%= x %>" alt="" /></a>
   <% end %>
 </div>
 
