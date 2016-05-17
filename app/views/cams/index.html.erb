@@ -1,12 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<h2>Nest Cams</h2>
+
 
 <table>
   <thead>
     <tr>
       <th>Title</th>
-      <th>Alert</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,9 +15,14 @@
       <tr>
         <td><%= cam.title %></td>
         <td><%= cam.alert %></td>
-        <td><%= link_to 'Alerts', cam %></td>
-        <td><%= link_to 'Edit', edit_cam_path(cam) %></td>
-        <td><%= link_to 'Remove', cam, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <div class="buttons">
+
+        <% @alert = Alert.last.image_url %>
+        <img src="<%=@alert%>"</img>
+        <td class="btn btn-default btn-sm"><%= link_to 'Alerts', cam %></td>
+        <td class="btn btn-default btn-sm"><%= link_to 'Edit', edit_cam_path(cam) %></td>
+        <td class="btn btn-default btn-sm"><%= link_to 'Remove', cam, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </div>
       </tr>
     <% end %>
   </tbody>

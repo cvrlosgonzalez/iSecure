@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'devise'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
 gem 'simple_form'
+gem 'twilio-ruby'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
 # Use sqlite3 as the database for Active Record
@@ -40,4 +41,4 @@ group :development do
   gem 'spring'
 end
 gem 'dotenv-rails'
-gem 'em-eventsource', git: 'git@github.com:nicomass/em-eventsource.git'
+gem 'em-eventsource', git: 'https://github.com/nicomass/em-eventsource.git'
