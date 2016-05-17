@@ -4,6 +4,7 @@ gem 'devise'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
 gem 'simple_form'
 gem 'kaminari'
+gem 'better_errors'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
 # Use sqlite3 as the database for Active Record
