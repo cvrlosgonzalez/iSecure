@@ -14,15 +14,25 @@
     Montior text holder
 </div>
 
+<div id ="cam_status">
+  cam status of on or off will replace this text and make it visible.
+</div>
 
-<p id="activate">
-  Turn on Alert monitor to save alerts.<br>
-  Yes, save alerts <%= radio_button_tag(:monitor, "on" ,true, class: "monitor_toggle") %> <br>
-  No, don't save alerts <%= radio_button_tag(:monitor, "off",true, class: "monitor_toggle") %><br>
+<div class="manage">
+<p id="cams_power">
+  Manage Camera's power<br>
+  Camera On <%= radio_button_tag(:cam_power, "true" ,true, class: "cams_power") %> <br>
+  Camera Off <%= radio_button_tag(:cam_power, "false" ,false, class: "cams_power") %> <br>
 </p>
+</div>
 
-
-
+<div class="manage">
+<p id="activate">
+  Do you want to save motion alerts?<br>
+  Yes, save alerts <%= radio_button_tag(:monitor, "on" ,false, class: "monitor_toggle") %> <br>
+  No, don't save alerts <%= radio_button_tag(:monitor, "off",false, class: "monitor_toggle") %><br>
+</p>
+</div>
 
 <div id="anilerts">
 <% @u = Alert.all %>
@@ -34,3 +44,5 @@
 
   <%= link_to 'Edit', edit_cam_path(@cam) %> |
   <%= link_to 'Back', cams_path %>
+
+  <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
