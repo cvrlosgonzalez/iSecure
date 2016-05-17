@@ -23,7 +23,15 @@
 
 
 
-<%= link_to 'Edit', edit_cam_path(@cam) %> |
-<%= link_to 'Back', cams_path %>
 
-<%= @cam.alerts.to_a %>
+<div id="anilerts">
+<% @u = Alert.all %>
+<% @anilerts = @u.map {|alert| alert.animated_url } %>
+<% @anilerts.each do |x| %>
+  <a href="<%=x%>"><img src="<%= x %>" alt="" /></a>
+  <% end %>
+
+
+  <%= link_to 'Edit', edit_cam_path(@cam) %> |
+  <%= link_to 'Back', cams_path %>
+</div>
