@@ -20,14 +20,14 @@ function confirmation(text){
     return resp;
   }
 
-function toggle_power(option){
-  var ref = new Firebase('wss://developer-api.nest.com');
-  ref.auth("insert env key here..");
-  // update the camera power setting
-  ref.update( { "devices": { "cameras": { "VzE0LkDkTwboTLgNR0kGvb0k6laaMeWdPTPxP9MDOU1BEsxNcUT72g": { "is_streaming":  option  } } } });
-  console.log("SENT REQUEST as " + option );
-  return option;
-};
+  function toggle_power(option){
+    var ref = new Firebase('wss://developer-api.nest.com');
+    ref.auth("ENV['NESTTOKEN']");
+    // update the camera power setting
+    ref.update( { "devices": { "cameras": { "VzE0LkDkTwboTLgNR0kGvb0k6laaMeWdPTPxP9MDOU1BEsxNcUT72g": { "is_streaming":  option  } } } });
+    console.log("SENT REQUEST as " + option );
+    return option;
+  };
 
 
 $( document ).ready(function() {
