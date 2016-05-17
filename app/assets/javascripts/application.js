@@ -21,12 +21,9 @@ function confirmation(text){
   }
 
   function toggle_power(option){
-    var ref = new Firebase('wss://developer-api.nest.com');
-    ref.auth("ENV['NESTTOKEN']");
-    // update the camera power setting
-    ref.update( { "devices": { "cameras": { "VzE0LkDkTwboTLgNR0kGvb0k6laaMeWdPTPxP9MDOU1BEsxNcUT72g": { "is_streaming":  option  } } } });
-    console.log("SENT REQUEST as " + option );
-    return option;
+    $.ajax({
+        url: "/monitorfire/2/?power="+option
+          })
   };
 
 
