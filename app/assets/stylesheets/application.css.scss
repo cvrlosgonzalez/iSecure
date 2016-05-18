@@ -1,5 +1,3 @@
-
-
 @import "bootstrap-sprockets";
 @import "bootstrap";
  /* dashboard */
@@ -10,6 +8,20 @@
   width: 60%;
   background-color: blue;
 
+}
+#alerts_container {
+  width:80%;
+  margin: 2%;
+  background-color: none;
+}
+.alert_photos {
+  padding: 15px;
+  margin: 0;
+  background: none;
+  width: 40%;
+}
+.animated_display {
+  display: none;
 }
 #cam_status {
   margin: 2em;
