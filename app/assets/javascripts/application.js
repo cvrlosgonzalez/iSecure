@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require bootstrap-sprockets
 //= require_tree .
 
 //= require bootstrap
@@ -52,7 +53,7 @@ $( document ).ready(function() {
       console.info('option is ' + option);
       if(option){ user_option = "ON" } else { user_option = "OFF"};
       console.log('user_option is ' + user_option);
-      user_confirm = confirmation('You are about to turn the camera ' + option + '. Click ok to confirm and proceed.')
+      user_confirm = confirmation('You are about to turn the camera ' + user_option + '. Click ok to confirm and proceed.')
       console.log('user_confirm is ' + user_confirm);
       if(user_option == "ON" && user_confirm === true){
         var ref = new Firebase('wss://developer-api.nest.com');
@@ -70,9 +71,12 @@ $( document ).ready(function() {
       };
     })
 
-    $(".alert_photos").on("click", function() { // toggle animated_url which is hidden below thumbnail iage
+    $('.alert_photos').on("click", function() { // toggle animated_url which is hidden below thumbnail iage
        var id_num = $(this).closest('div').attr('id');
         $('#' + id_num +'_imageholder').slideToggle(600);
     });
 
+
+    // $('#monitor_off').prop( "checked", true );
+    // $("#monitor_").bootstrapSwitch();
 });
