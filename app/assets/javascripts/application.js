@@ -34,8 +34,9 @@ $( document ).ready(function() {
       console.log("click works");
       var monId = $(this).attr('id');
       var monVal = $(this).attr('value')
+      var cam_id = $("#cam_id_").attr('value')
     $.ajax({
-        url: "/monitor_"+monVal
+        url: "/monitor_" + monVal + "/" + cam_id
     })
       .done(function() {
         $('#monitor_status').text("The monitor is set to: " + monVal.toUpperCase());
