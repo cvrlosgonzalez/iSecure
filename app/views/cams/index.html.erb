@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+
 
 
 
@@ -15,10 +15,12 @@
       <tr>
         <td><%= cam.title %></td>
         <td><%= cam.alert %></td>
+        <% @alert = Alert.last.image_url %>
+        <img id='index_img'src="<%=@alert%>"</img>
       <div class="buttons">
 
-        <% @alert = Alert.last.image_url %>
-        <img src="<%=@alert%>"</img>
+
+
         <td class="btn btn-default btn-sm"><%= link_to 'Alerts', cam %></td>
         <td class="btn btn-default btn-sm"><%= link_to 'Edit', edit_cam_path(cam) %></td>
         <td class="btn btn-default btn-sm"><%= link_to 'Remove', cam, method: :delete, data: { confirm: 'Are you sure?' } %></td>

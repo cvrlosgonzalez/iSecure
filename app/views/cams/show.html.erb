@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 
 
 <%= hidden_field(:cam_id, "",:value => @cam.id) %>
@@ -37,9 +36,9 @@
 
 <div id="alerts_container">
   <%= paginate @alerts %><br>
-  <% @alerts.each do |alert|  %>
+  <% @alerts.reverse.each do |alert|  %>
     <div id="<%= alert.id %>">
-      <%= alert.created_at.in_time_zone("Eastern Time (US & Canada)") %><br>
+    <small>  <%= time_ago_in_words(alert.created_at)%> ago<br></small>
       <img src="<%= alert.image_url %>" alt="" class="alert_photos" />
     </div>
     <div id="<%= alert.id %>_imageholder" class="animated_display">
