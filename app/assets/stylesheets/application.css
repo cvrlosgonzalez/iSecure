@@ -93,6 +93,10 @@
   width: 40%;
 }
 
+.animated_display {
+  display: none;
+}
+
 /* boot strap */
 @import "bootstrap-sprockets";
 @import "bootstrap";
