@@ -14,6 +14,8 @@
 //= require jquery_ujs
 //= require_tree .
 
+//= require bootstrap
+
 function parseBool(val) { return val === true || val === "true" }
 function confirmation(text){
     resp = window.confirm(text);
