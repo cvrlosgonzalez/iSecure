@@ -38,7 +38,7 @@
 
 <div id="alerts_container">
   <%= paginate @alerts %><br>
-  <% @alerts.reverse.each do |alert|  %>
+  <% @alerts.each do |alert|  %>
   <small>  <%= time_ago_in_words(alert.created_at)%> ago<br></small>
   <small>  <%= alert.created_at.strftime("%b %d, %Y") %> at <%= alert.created_at.strftime("%I:%M") %><br></small>
 
