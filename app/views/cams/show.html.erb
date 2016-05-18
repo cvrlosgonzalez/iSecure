@@ -39,15 +39,16 @@
 <div id="alerts_container">
   <%= paginate @alerts %><br>
   <% @alerts.reverse.each do |alert|  %>
-    <small>  <%= time_ago_in_words(alert.created_at)%> ago<br></small>
-    <small>  <%= alert.created_at %> ago<br></small>
+
     <div id="<%= alert.id %>">
       <img src="<%= alert.image_url %>" alt="" class="alert_photos" />
-    </div>
-    <div id="<%= alert.id %>_imageholder" class="animated_display">
       <small>  <%= time_ago_in_words(alert.created_at)%> ago<br></small>
       <small>  <%= alert.created_at.strftime("%b %d, %Y") %> at <%= alert.created_at.strftime("%I:%M") %><br></small>
-      <img src="<%=alert.animated_url%>" alt="" >
+    </div>
+    <div id="<%= alert.id %>_imageholder" class="animated_display">
+  <img src="<%=alert.animated_url%>" alt="" >
+      <small>  <%= time_ago_in_words(alert.created_at)%> ago<br></small>
+      <small>  <%= alert.created_at.strftime("%b %d, %Y") %> at <%= alert.created_at.strftime("%I:%M") %><br></small>
     </div>
   <% end %>
 </div>
