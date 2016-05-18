@@ -1,5 +1,8 @@
 <p id="notice"><%= notice %></p>
 
+
+<%= hidden_field(:cam_id, "",:value => @cam.id) %>
+
 <p>
   <strong>Title:</strong>
   <%= @cam.title %>
@@ -7,9 +10,7 @@
 
 
 
-<div id="monitor_status" style="display:none">
-    Montior text holder
-</div>
+
 
 <div id ="cam_status">
   cam status of on or off will replace this text and make it visible.
@@ -30,17 +31,36 @@
   </ul>
 </div>
 
+<<<<<<< HEAD
 
+=======
+<div class="manage">
+  <div id="monitor_status" style="display:none">
+      Montior text holder
+  </div>
+<p id="activate">
+  Do you want to save motion alerts?<br>
+  Yes, save alerts <%= radio_button_tag(:monitor, "on" ,false, class: "monitor_toggle") %> <br>
+  No, don't save alerts <%= radio_button_tag(:monitor, "off",false, class: "monitor_toggle") %><br>
+</p>
+</div>
+>>>>>>> 96637a09ce15e4da37c86f635b31e6d52f215e73
 
-<div id="anilerts">
-<% @u = Alert.all %>
-<% @anilerts = @u.map {|alert| alert.animated_url } %>
-<% @anilerts.reverse.each do |x| %>
-  <a href="<%=x%>" target="_blank"><img src="<%= x %>" alt="" /></a>
+<%= link_to 'Edit Cam Description', edit_cam_path(@cam) %> |
+<%= link_to 'List all Cameras', cams_path %>
+
+<div id="alerts_container">
+  <%= paginate @alerts %><br>
+  <% @alerts.each do |alert|  %>
+    <div id="<%= alert.id %>">
+      <%= alert.created_at.in_time_zone("Eastern Time (US & Canada)") %><br>
+      <img src="<%= alert.image_url %>" alt="" class="alert_photos" />
+    </div>
+    <div id="<%= alert.id %>_imageholder" class="animated_display">
+      <img src="<%=alert.animated_url%>" alt="" >
+    </div>
   <% end %>
 </div>
 
-  <%= link_to 'Edit', edit_cam_path(@cam) %> |
-  <%= link_to 'Back', cams_path %>
 
-  <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+<script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>

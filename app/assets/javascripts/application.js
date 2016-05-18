@@ -22,21 +22,23 @@ function confirmation(text){
     return resp;
   }
 
-  function toggle_power(option){
-    $.ajax({
-        url: "/monitorfire/2/?power="+option
-          })
-  };
+function toggle_power(option){  //turn camera on or off
+  $.ajax({
+      url: "/monitorfire/2/?power="+option
+        })
+};
+
 
 
 $( document ).ready(function() {
-  //section to save alerts
-    $('.monitor_toggle').on("click", function(){
+
+    $('.monitor_toggle').on("click", function(){ //section to save alerts
       console.log("click works");
       var monId = $(this).attr('id');
       var monVal = $(this).attr('value')
+      var cam_id = $("#cam_id_").attr('value')
     $.ajax({
-        url: "/monitor_"+monVal
+        url: "/monitor_" + monVal + "/" + cam_id
     })
       .done(function() {
         $('#monitor_status').text("The monitor is set to: " + monVal.toUpperCase());
@@ -44,12 +46,10 @@ $( document ).ready(function() {
       })
     });
 
-    $('.cams_power').on("click", function(){
+    $('.cams_power').on("click", function(){  // turn power off and on
       var camspower = $(this).attr('value');
       var option = parseBool(camspower) //turn string true/false into bool true/false
       console.info('option is ' + option);
-      // confirm = confirm('You are about to turn the camera ' + option + '. Click ok to confirm and proceed.' );
-      // confirm = window.confirm('You are about to turn the camera ' + option + '. Click ok to confirm and proceed.' );
       if(option){ user_option = "ON" } else { user_option = "OFF"};
       console.log('user_option is ' + user_option);
       user_confirm = confirmation('You are about to turn the camera ' + option + '. Click ok to confirm and proceed.')
@@ -69,4 +69,10 @@ $( document ).ready(function() {
         $('#cam_status').css("display", "block");
       };
     })
+
+    $(".alert_photos").on("click", function() { // toggle animated_url which is hidden below thumbnail iage
+       var id_num = $(this).closest('div').attr('id');
+        $('#' + id_num +'_imageholder').slideToggle(600);
+    });
+
 });

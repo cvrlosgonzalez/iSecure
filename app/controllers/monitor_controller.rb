@@ -4,12 +4,21 @@ attr_accessor :power, :id
 
     def monitor_on
       p "Monitor is ON from method!!"
+      @monitor = Cam.find(params[:id])
+      @monitor.update(monitoring: true)
       redirect_to cams_path
     end
 
     def monitor_off
       p "Monitor is OFF from method!!"
+      @monitor = Cam.find(params[:id])
+      @monitor.update(monitoring: false)
       redirect_to cams_path
+    end
+
+    def edit
+      raise
+      @cameras = cams.find_by(1)
     end
 
     def show
