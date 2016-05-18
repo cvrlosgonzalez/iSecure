@@ -39,9 +39,9 @@
 <div id="alerts_container">
   <%= paginate @alerts %><br>
   <% @alerts.reverse.each do |alert|  %>
-    <div id="<%= alert.id %>">
     <small>  <%= time_ago_in_words(alert.created_at)%> ago<br></small>
     <small>  <%= alert.created_at %> ago<br></small>
+    <div id="<%= alert.id %>">
       <img src="<%= alert.image_url %>" alt="" class="alert_photos" />
     </div>
     <div id="<%= alert.id %>_imageholder" class="animated_display">
