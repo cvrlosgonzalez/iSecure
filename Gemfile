@@ -43,4 +43,4 @@ group :development do
   gem 'spring'
 end
 gem 'dotenv-rails'
-gem 'em-eventsource', git: 'git@github.com:nicomass/em-eventsource.git'
+gem 'em-eventsource', git: 'https://github.com/nicomass/em-eventsource.git'

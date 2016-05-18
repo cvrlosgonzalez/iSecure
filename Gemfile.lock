@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:nicomass/em-eventsource.git
+  remote: https://github.com/nicomass/em-eventsource.git
   revision: ed2cf0c3ed53a41363110be7315457f8aad8c797
   specs:
     em-eventsource (0.2.1)
