@@ -31,11 +31,14 @@ namespace :nest do
 
           counter = counter + 1
 
-          if !cam.alerts.empty? && (last_event.eql? cam.alerts.last.last_event) && !cam.monitoring
+          if !cam.alerts.empty? && (last_event.eql? cam.alerts.last.last_event)
             p "it's the same alert number -#{counter} or monitoring is set to #{cam.monitoring}"
           else
-            p "it's a new alert number-#{counter}, TIME TO SAVE IT!! -- monitoring is set to #{cam.monitoring}"
-            @alert = Alert.create(animated_url: animated_url, image_url: image_url, last_event: last_event, cam:cam)
+            if cam.monitoring
+              p "it's a new alert number-#{counter}, TIME TO SAVE IT!! -- monitoring is set to #{cam.monitoring}"
+              @alert = Alert.create(animated_url: animated_url, image_url: image_url, last_event: last_event, cam:cam)
+              p "alert info: #{@alert}"
+            end
           end
 
           puts "*"*100
