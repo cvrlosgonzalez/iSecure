@@ -41,6 +41,7 @@
   <% @alerts.reverse.each do |alert|  %>
     <div id="<%= alert.id %>">
     <small>  <%= time_ago_in_words(alert.created_at)%> ago<br></small>
+    <small>  <%= alert.created_at %> ago<br></small>
       <img src="<%= alert.image_url %>" alt="" class="alert_photos" />
     </div>
     <div id="<%= alert.id %>_imageholder" class="animated_display">
@@ -51,5 +52,3 @@
 
 
 <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
-<!-- <link href="css/bootstrap.min.css" rel="stylesheet">
- <script src="js/bootstrap.min.js"></script> -->
