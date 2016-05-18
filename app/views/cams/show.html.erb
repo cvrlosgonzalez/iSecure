@@ -46,7 +46,10 @@
   <% @alerts.each do |alert|  %>
     <div id="<%= alert.id %>">
       <%= alert.created_at.in_time_zone("Eastern Time (US & Canada)") %><br>
-      <a href="<%=alert.animated_url%>" target="_blank" ><img src="<%= alert.image_url %>" alt="" class="alert_photos" /></a>
+      <img src="<%= alert.image_url %>" alt="" class="alert_photos" />
+    </div>
+    <div id="<%= alert.id %>_imageholder" class="animated_display">
+      <img src="<%=alert.animated_url%>" alt="" >
     </div>
   <% end %>
 </div>
