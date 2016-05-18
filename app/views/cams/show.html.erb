@@ -8,10 +8,7 @@
   <%= @cam.title %>
 </p>
 
-<p>
-  <strong>Alert:</strong>
-  <%= @cam.alert %>
-</p>
+
 
 
 
@@ -19,26 +16,25 @@
   cam status of on or off will replace this text and make it visible.
 </div>
 
-<div class="manage">
-<p id="cams_power">
-  Manage Camera's power<br>
-  Camera On <%= radio_button_tag(:cam_power, "true" ,true, class: "cams_power bootstrap-switch-container") %> <br>
-  Camera Off <%= radio_button_tag(:cam_power, "false" ,false, class: "cams_power bootstrap-switch-container") %> <br>
-</p>
+<div class="dropdown">
+  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Manage
+  <span class="caret"></span></button>
+  <ul class="dropdown-menu">
+    <li><strong>Power</strong></li>
+    <li>Camera On <%= radio_button_tag(:cam_power, "true" ,true, class: "cams_power") %> <br></li>
+    <li>Camera Off <%= radio_button_tag(:cam_power, "false" ,false, class: "cams_power") %> <br></li>
+    <li><strong>Alerts</strong></li>
+    <li>Yes, save alerts <%= radio_button_tag(:monitor, "on" ,false, class: "monitor_toggle") %> <br></li>
+    <li>No, don't save alerts <%= radio_button_tag(:monitor, "off",false, class: "monitor_toggle") %><br></li>
+    <br>
+    <li>  <strong><%= link_to 'Change Name', edit_cam_path(@cam) %></li>
+    <li><%= link_to 'Home', cams_path %></li></strong>
+  </ul>
+
 </div>
 
-<div class="manage">
-  <div id="monitor_status" style="display:none">
-      Montior text holder
-  </div>
-<p id="activate">
-  Do you want to save motion alerts?<br>
-  Yes, save alerts <%= radio_button_tag(:monitor, "on" ,false, class: "monitor_toggle") %> <br>
-  No, don't save alerts <%= radio_button_tag(:monitor, "off",false, class: "monitor_toggle") %><br>
-</p>
-</div>
 
-<%= link_to 'Edit Cam Description', edit_cam_path(@cam) %> |
+<br>
 <%= link_to 'List all Cameras', cams_path %>
 
 <div id="alerts_container">

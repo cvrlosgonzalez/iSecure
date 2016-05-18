@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>iSecure</title>
+  <title id="logo">iSecure</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -12,9 +12,6 @@
       <div class="container">
         <div id="logo" class="navbar-brand"><%= link_to "iSecure", root_path %></div>
 
-  <% flash.each do |name, msg| %>
-  			<%= content_tag(:div, msg, class: "alert alert-info") %>
-  <% end %>
 
 
 	<% if user_signed_in? -%>
@@ -29,6 +26,11 @@
 							<li><%= link_to 'Sign in', new_user_session_path %></li>
 						</ul>
   <% end %>
+</header>
+  <% flash.each do |name, msg| %>
+        <%= content_tag(:div, msg, class: "alert alert-info") %>
+  <% end %>
+
 <%= yield %>
 
 </body>
