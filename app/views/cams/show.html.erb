@@ -22,8 +22,8 @@
 <div class="manage">
 <p id="cams_power">
   Manage Camera's power<br>
-  Camera On <%= radio_button_tag(:cam_power, "true" ,true, class: "cams_power") %> <br>
-  Camera Off <%= radio_button_tag(:cam_power, "false" ,false, class: "cams_power") %> <br>
+  Camera On <%= radio_button_tag(:cam_power, "true" ,true, class: "cams_power bootstrap-switch-container") %> <br>
+  Camera Off <%= radio_button_tag(:cam_power, "false" ,false, class: "cams_power bootstrap-switch-container") %> <br>
 </p>
 </div>
 
@@ -56,3 +56,5 @@
 
 
 <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+<!-- <link href="css/bootstrap.min.css" rel="stylesheet">
+ <script src="js/bootstrap.min.js"></script> -->
