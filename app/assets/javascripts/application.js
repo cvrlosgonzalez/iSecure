@@ -68,4 +68,9 @@ $( document ).ready(function() {
       };
     })
 
+    $(".alert_photos").on("click", function() { // toggle animated_url which is hidden below thumbnail iage
+       var id_num = $(this).closest('div').attr('id');
+        $('#' + id_num +'_imageholder').slideToggle(600);
+    });
+
 });
