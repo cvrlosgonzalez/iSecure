@@ -25,9 +25,13 @@
 }
 .animated_display {
   display: none;
-  border: solid 1px black;
+}
+
+.img-ani {
+  border: solid 2px red;
   margin: 0 auto;
 }
+
 #index_img {
   height: 80%;
   width: 60%;
