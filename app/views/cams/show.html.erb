@@ -45,7 +45,7 @@
 <div id="alerts_container">
   <% @alerts.each do |alert|  %>
   <small>  <%= time_ago_in_words(alert.created_at)%> ago<br></small>
-  <small>  <%= alert.created_at.strftime("%b %d, %Y") %> at <%= alert.created_at.strftime("%I:%M") %><br></small>
+  <small>  <%= alert.created_at.strftime("%b %d, %Y") %> at <%= alert.created_at.strftime("%I:%M%P %Z") %><br></small>
 
     <div id="<%= alert.id %>">
       <img src="<%= alert.image_url %>" alt="" class="alert_photos" />
