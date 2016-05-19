@@ -44,6 +44,7 @@ $( document ).ready(function() {
       .done(function() {
         $('#monitor_status').text("The monitor is set to: " + monVal.toUpperCase());
         $('#monitor_status').css("display", "block");
+        $('#monitor_' + monVal).css("selected", "selected")
       })
     });
 
@@ -66,10 +67,12 @@ $( document ).ready(function() {
         toggle_power(option);
         $('#cam_status').text("Camera status changed to "+ user_option, "block");
         $('#cam_status').css("display", "block");
+        $('#cam_power_true').css("selected", "selected")
       } else if (user_option == "OFF" && user_confirm === true) {
         toggle_power(option);
         $('#cam_status').text("Camera status changed to "+user_option, "block");
         $('#cam_status').css("display", "block");
+        $('#cam_power_false').css("selected", "selected")
       } else {
         $('#cam_status').text("No changes have been made to the camera's power status. ", "block");
 

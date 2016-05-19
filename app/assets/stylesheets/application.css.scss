@@ -7,7 +7,7 @@
   flex-direction: row;
   justify-content: center;
   width: 60%;
-  background-color: blue;
+  // background-color: blue;
 
 }
 #alerts_container {
@@ -65,4 +65,9 @@
 	a {
 		color: #2F363E;
 	}
+}
+
+.dropdown-menu {
+  min-width: 70%;
+  padding: 2em;
 }
