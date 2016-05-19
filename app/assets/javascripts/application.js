@@ -18,6 +18,7 @@
 //= require bootstrap
 
 function parseBool(val) { return val === true || val === "true" }
+
 function confirmation(text){
     resp = window.confirm(text);
     return resp;
@@ -32,6 +33,7 @@ function toggle_power(option){  //turn camera on or off
 
 
 $( document ).ready(function() {
+
 
     $('.monitor_toggle').on("click", function(){ //section to save alerts
       console.log("click works");
@@ -85,7 +87,29 @@ $( document ).ready(function() {
 
     });
 
+    // get latest alert without screen refresh. either alert user to refresh or update page with prepend.
 
-    // $('#monitor_off').prop( "checked", true );
-    // $("#monitor_").bootstrapSwitch();
+    function checkForNewAlerts(){
+      var ref = new Firebase("https://blistering-heat-6382.firebaseio.com/");
+      ref.on ("child_changed", function(snapshot) {
+        resp = snapshot.val();
+        console.log('-------');
+        console.log(resp.last_alert);
+        console.log(resp.image_url);
+        console.log(resp.animated_url);
+        console.log('-------');
+
+        $( '<img src="'+ resp.image_url+ '" class="alert_photos" <br><br>' ).prependTo( '#alerts_container' );
+        $( '<p>A new image is available. Refresh page to view details</p>' ).prependTo( '#alerts_container' );
+        $('.refresh_btn').css("display", "block");
+        $('.refresh_btn').css("color", "red");
+
+        // $('#alerts_container').prepend("")
+        }, function (errorObject) {
+        console.log("The read failed: " + errorObject.code);
+        });
+      };
+      checkForNewAlerts();
+
+
 });

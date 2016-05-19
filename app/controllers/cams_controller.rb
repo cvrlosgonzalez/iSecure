@@ -5,17 +5,6 @@ class CamsController < ApplicationController
   # GET /cams.json
   def index
     @cams = Cam.all
-
-    var ref = new Firebase(...);
-    ref.orderByChild('timestamp').startAt(Date.now()).on('child_added', function(snapshot) {
-      console.log('new record', snap.key());
-    });
-
-    firebase = Firebase::Client.new('https://developer-api.nest.com', ENV['NESTTOKEN']);
-    response = firebase.on("devices/cameras/VzE0LkDkTwboTLgNR0kGvb0k6laaMeWdPTPxP9MDOU1BEsxNcUT72g", { :is_streaming => power_on_boolean })
-    # pp response.body
-    redirect_to cam_path
-
     # @alerts = Alert.all.find_by(cam_id: params[:id]).page(params[:page]).per(12)
   end
 

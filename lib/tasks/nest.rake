@@ -38,6 +38,10 @@ namespace :nest do
               p "it's a new alert number-#{counter}, TIME TO SAVE IT!! -- monitoring is set to #{cam.monitoring}"
               @alert = Alert.create(animated_url: animated_url, image_url: image_url, last_event: last_event, cam:cam)
               p "alert info: #{@alert}"
+              #write alert to Firebase
+              last_alert = Firebase::Client.new("https://blistering-heat-6382.firebaseio.com/")
+              response = last_alert.update("alerts", {:image_url => image_url, :animated_url => animated_url,:last_alert =>  last_event})
+
             end
           end
 
