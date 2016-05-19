@@ -31,9 +31,7 @@ function toggle_power(option){  //turn camera on or off
 };
 
 
-
 $( document ).ready(function() {
-
 
     $('.monitor_toggle').on("click", function(){ //section to save alerts
       console.log("click works");
@@ -53,10 +51,15 @@ $( document ).ready(function() {
       var camspower = $(this).attr('value');
       var option = parseBool(camspower) //turn string true/false into bool true/false
       console.info('option is ' + option);
+
+
+
       if(option){ user_option = "ON" } else { user_option = "OFF"};
       console.log('user_option is ' + user_option);
       user_confirm = confirmation('You are about to turn the camera ' + user_option + '. Click ok to confirm and proceed.')
       console.log('user_confirm is ' + user_confirm);
+
+
       if(user_option == "ON" && user_confirm === true){
         var ref = new Firebase('wss://developer-api.nest.com');
         toggle_power(option);
@@ -68,6 +71,8 @@ $( document ).ready(function() {
         $('#cam_status').css("display", "block");
       } else {
         $('#cam_status').text("No changes have been made to the camera's power status. ", "block");
+
+        //insert firebase call to get real camera status
         $('#cam_status').append("\nCamera status is: " + user_option);
         $('#cam_status').css("display", "block");
       };
@@ -87,29 +92,48 @@ $( document ).ready(function() {
 
     });
 
+
     // get latest alert without screen refresh. either alert user to refresh or update page with prepend.
-
     function checkForNewAlerts(){
-      var ref = new Firebase("https://blistering-heat-6382.firebaseio.com/");
+      var ref = new Firebase("https://blistering-heat-6382.firebaseio.com/alerts");
       ref.on ("child_changed", function(snapshot) {
-        resp = snapshot.val();
-        console.log('-------');
-        console.log(resp.last_alert);
-        console.log(resp.image_url);
-        console.log(resp.animated_url);
-        console.log('-------');
-
-        $( '<img src="'+ resp.image_url+ '" class="alert_photos" <br><br>' ).prependTo( '#alerts_container' );
-        $( '<p>A new image is available. Refresh page to view details</p>' ).prependTo( '#alerts_container' );
-        $('.refresh_btn').css("display", "block");
-        $('.refresh_btn').css("color", "red");
-
-        // $('#alerts_container').prepend("")
+        var resp = snapshot.val();
+          $( '<img src="'+ resp.image_url+ '" class="alert_photos" <br><br>' ).prependTo( '#alerts_container' );
+          $( '<p>A new image is available. Refresh page to view details</p>' ).prependTo( '#alerts_container' );
+          $('.refresh_btn').css("display", "block");
+          $('.refresh_btn').css("color", "red");
+          console.log('new alert! : '+ resp.last_alert);
+          // ref.remove(); //can remove it, but since this data is in 'alerts' branch, no need to.
         }, function (errorObject) {
         console.log("The read failed: " + errorObject.code);
         });
       };
       checkForNewAlerts();
 
+      function checkStatus(){
+        var ref2 = new Firebase("https://blistering-heat-6382.firebaseio.com/monitor");
+        ref2.on ("child_changed", function(snapshot) {
+          var status = snapshot.val();
+            // $( '</div id="status_btn">Alerts being saved? ' + status.save_alerts + ' <br><br>' ).prependTo( '#alerts_container' );
+            var power = "";
+            var powerstatus = (status.power === true) ? power ='ON': power = 'OFF';
+            console.log(powerstatus);
+            if(powerstatus == 'ON') {
+              $('#cam_status').html('</div id="status_btn">Camera\'s Power is ' + power + '</div>');
+              $('#cam_status').css("display", "block");
+            }
 
+            $('#alert_status').html('<div id="status_btn">Alerts being saved? ' + status.save_alerts.toUpperCase() + '</div>');
+            $('#cam_status').css("display", "block");
+
+            $('.refresh_btn').css("color", "red");
+            console.log('do we save alerts? : '+ status.save_alerts);
+            console.log('name is is: '+ status.user);
+            console.log('name is is: '+ status.power); // power will be true/false
+            // console.log(typeof(status.power));  // confirmed boolean if true, not 'true'
+          }, function (errorObject) {
+          console.log("The read failed: " + errorObject.code);
+          });
+        };
+        checkStatus();
 });

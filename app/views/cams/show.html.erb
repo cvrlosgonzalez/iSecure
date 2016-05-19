@@ -11,9 +11,8 @@
 
 
 
-<div id ="cam_status">
-  cam status of on or off will replace this text and make it visible.
-</div>
+<div id ="cam_status">Camera's Power is ..</div>
+<div id ="alert_status">Alerts being saved? ..</div>
 
 <div class="dropdown">
   <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Manage
@@ -40,12 +39,12 @@
   <%= paginate @alerts %><br>
 </div>
 
-<div class="refresh_btn"> Add a Refresh button here? This will only show when a new image is added </div>
+<div class="refresh_btn" > <input type="button" value="Refresh Page" onClick="window.location.reload()"> </div>
 
 <div id="alerts_container">
   <% @alerts.each do |alert|  %>
   <small>  <%= time_ago_in_words(alert.created_at)%> ago<br></small>
-  <small>  <%= alert.created_at.strftime("%b %d, %Y") %> at <%= alert.created_at.strftime("%I:%M") %><br></small>
+  <small>  <%= alert.created_at.strftime("%b %d, %Y") %> at <%= alert.created_at.strftime("%I:%M%P %Z") %><br></small>
 
     <div id="<%= alert.id %>">
       <img src="<%= alert.image_url %>" alt="" class="alert_photos" />
