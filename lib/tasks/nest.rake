@@ -40,8 +40,7 @@ namespace :nest do
               p "alert info: #{@alert}"
               #write alert to Firebase
               last_alert = Firebase::Client.new("https://blistering-heat-6382.firebaseio.com/")
-              response = last_alert.update("alerts", {:image_url => image_url, :animated_url => animated_url,:last_alert =>  last_event})
-
+              response = last_alert.update("alerts/data", {:image_url => image_url, :animated_url => animated_url,:last_alert =>  last_event})
             end
           end
 
