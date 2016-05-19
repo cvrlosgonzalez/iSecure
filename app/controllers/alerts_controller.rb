@@ -19,8 +19,13 @@ require 'pp'
     end
 
   def create
+    @user = current_user
+    @alert = Alert.new(alert_params)
+
     respond_to do |format|
       if @alert.save
+
+        PostMailer.alert_created(@user).deliver
         # format.html { redirect_to @alert, notice: 'Alert was successfully created.' }
         # format.json { render :show, status: :created, location: @alert}
       else
