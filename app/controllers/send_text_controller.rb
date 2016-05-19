@@ -3,8 +3,8 @@ class SendTextController < ApplicationController
   end
 
   def send_text_message
-    number_to_send_to = params[:number_to_send_to]
-
+    number_to_send_to = "3054316702"
+    puts "Hello! Sending text"
     twilio_sid = "AC66fe222ac78b6a424d42577aca96424a"
     twilio_token = "43a273da95bf36bc354e99ea131bda3d"
     twilio_phone_number = "7733624308"

@@ -5,7 +5,6 @@
 <table>
   <thead>
     <tr>
-      <th>Title</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -13,19 +12,22 @@
   <tbody>
     <% @cams.each do |cam| %>
       <tr>
-        <td><%= cam.title %></td>
         <td><%= cam.alert %></td>
+        <%= cam.title %>
         <% @alert = Alert.last.image_url %>
-        <img id='index_img'src="<%=@alert%>"</img>
-      <div class="buttons">
+        <img id='index_img'src="<%=@alert%>"> </img>
 
 
-
-        <td class="btn btn-default btn-sm"><%= link_to 'Alerts', cam %></td>
-        <td class="btn btn-default btn-sm"><%= link_to 'Edit', edit_cam_path(cam) %></td>
-        <td class="btn btn-default btn-sm"><%= link_to 'Remove', cam, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          </div>
+        <div class="dropdown">
+          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">&#128276;
+          <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+        <li class="btn btn-default btn-sm"><%= link_to 'Alerts', cam %></li>
+        <li class="btn btn-default btn-sm"><%= link_to 'Edit', edit_cam_path(cam) %></li>
+        <li class="btn btn-default btn-sm"><%= link_to 'Remove', cam, method: :delete, data: { confirm: 'Are you sure?' } %></li>
       </tr>
+    </ul>
+  </div>
     <% end %>
   </tbody>
 </table>
