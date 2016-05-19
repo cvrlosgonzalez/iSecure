@@ -39,7 +39,7 @@
   <%= paginate @alerts %><br>
 </div>
 
-<div class="refresh_btn"> Add a Refresh button here? This will only show when a new image is added </div>
+<div class="refresh_btn" > <input type="button" value="Refresh Page" onClick="window.location.reload()"> </div>
 
 <div id="alerts_container">
   <% @alerts.each do |alert|  %>
