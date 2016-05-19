@@ -95,10 +95,10 @@ $( document ).ready(function() {
 
     // get latest alert without screen refresh. either alert user to refresh or update page with prepend.
     function checkForNewAlerts(){
-      var ref = new Firebase("https://blistering-heat-6382.firebaseio.com/alerts");
+      var ref = new Firebase("https://blistering-heat-6382.firebaseio.com/alerts/data");
       ref.on ("child_changed", function(snapshot) {
         var resp = snapshot.val();
-          $( '<img src="'+ resp.image_url+ '" class="alert_photos" <br><br>' ).prependTo( '#alerts_container' );
+          $( '<img src="'+ resp.image_url+ '" class="alert_photos"> <br><br>' ).prependTo( '#alerts_container' );
           $( '<p>A new image is available. Refresh page to view details</p>' ).prependTo( '#alerts_container' );
           $('.refresh_btn').css("display", "block");
           $('.refresh_btn').css("color", "red");
