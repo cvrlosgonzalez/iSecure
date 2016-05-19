@@ -7,7 +7,7 @@
   flex-direction: row;
   justify-content: center;
   width: 60%;
-  background-color: blue;
+  // background-color: blue;
 
 }
 #alerts_container {
@@ -87,4 +87,9 @@ td.btn.btn-default.btn-sm{
 #content {
   margin: 0 auto 0 auto;
   width: 80%;
+}
+
+.dropdown-menu {
+  min-width: 70%;
+  padding: 2em;
 }

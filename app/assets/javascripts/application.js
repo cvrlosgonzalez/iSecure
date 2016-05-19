@@ -32,8 +32,8 @@ function toggle_power(option){  //turn camera on or off
 
 
 $( document ).ready(function() {
-
-    $('.monitor_toggle').on("click", function(){ //section to save alerts
+//section to save alerts
+    $('.monitor_toggle').on("click", function(){
       console.log("click works");
       var monId = $(this).attr('id');
       var monVal = $(this).attr('value')
@@ -44,13 +44,15 @@ $( document ).ready(function() {
       .done(function() {
         $('#monitor_status').text("The monitor is set to: " + monVal.toUpperCase());
         $('#monitor_status').css("display", "block");
+        $('#monitor_' + monVal).css("selected", "selected")
       })
     });
 
-    $('.cams_power').on("click", function(){  // turn power off and on
+// turn power off and on
+    $('.cams_power').on("click", function(){
       var camspower = $(this).attr('value');
       var option = parseBool(camspower) //turn string true/false into bool true/false
-      console.info('option is ' + option);
+      console.info('power option selected is: ' + option);
 
 
 
@@ -65,10 +67,12 @@ $( document ).ready(function() {
         toggle_power(option);
         $('#cam_status').text("Camera status changed to "+ user_option, "block");
         $('#cam_status').css("display", "block");
+        $('#cam_power_true').css("selected", "selected")
       } else if (user_option == "OFF" && user_confirm === true) {
         toggle_power(option);
         $('#cam_status').text("Camera status changed to "+user_option, "block");
         $('#cam_status').css("display", "block");
+        $('#cam_power_false').css("selected", "selected")
       } else {
         $('#cam_status').text("No changes have been made to the camera's power status. ", "block");
 
@@ -78,13 +82,14 @@ $( document ).ready(function() {
       };
     })
 
-    $('.alert_photos').on("click", function() { // toggle animated_url which is hidden below thumbnail iage
+// toggle animated_url which is hidden below thumbnail image
+    $('.alert_photos').on("click", function() {
        var id_num = $(this).closest('div').attr('id');
         $('#' + id_num +'_imageholder').toggle();
         $('#' + id_num ).toggle();
     });
-
-    $('.animated_display').on("click", function() { // toggle animated_url which is hidden below thumbnail iage
+// toggle animated_url which is hidden below thumbnail image
+    $('.animated_display').on("click", function() {
       //  var id_num = $(this).closest('div').attr('id');
        var id_num = $(this).prev().attr('id');
         $('#' + id_num +'_imageholder').toggle();
@@ -94,21 +99,23 @@ $( document ).ready(function() {
 
 
     // get latest alert without screen refresh. either alert user to refresh or update page with prepend.
-    // function checkForNewAlerts(){
-    //   var ref = new Firebase("https://blistering-heat-6382.firebaseio.com/alerts/data");
-    //   ref.on ("child_changed", function(snapshot) {
-    //     var resp = snapshot.val();
-    //       $( '<img src="'+ resp.image_url+ '" class="alert_photos"> <br><br>' ).prependTo( '#alerts_container' );
-    //       $( '<p>A new image is available. Refresh page to view details</p>' ).prependTo( '#alerts_container' );
-    //       $('.refresh_btn').css("display", "block");
-    //       $('.refresh_btn').css("color", "red");
-    //       console.log('new alert! : '+ resp.last_alert);
-    //       // ref.remove(); //can remove it, but since this data is in 'alerts' branch, no need to.
-    //     }, function (errorObject) {
-    //     console.log("The read failed: " + errorObject.code);
-    //     });
-    //   };
-    //   checkForNewAlerts();
+
+    function checkForNewAlerts(){
+      var ref = new Firebase("https://blistering-heat-6382.firebaseio.com/alerts/");
+      ref.on ("child_changed", function(snapshot) {
+        var resp = snapshot.val();
+          $( '<img src="'+ resp.image_url + '" class="alert_photos"> <br><br>' ).prependTo( '#alerts_container' );
+          $( '<p>A new image is available. Refresh page to view details</p>' ).prependTo( '#alerts_container' );
+          $('.refresh_btn').css("display", "block");
+          $('.refresh_btn').css("color", "red");
+          console.log('new alert! : '+ resp.last_alert);
+          // ref.remove(); //can remove it, but since this data is in 'alerts' branch, no need to.
+        }, function (errorObject) {
+        console.log("The read failed: " + errorObject.code);
+        });
+      };
+      checkForNewAlerts();
+
 
       function checkStatus(){
         var ref2 = new Firebase("https://blistering-heat-6382.firebaseio.com/monitor");
