@@ -1,9 +1,25 @@
 class SendTextController < ApplicationController
 
-    # twilio account information
-    TWILIO_NUMBER = "+17733624308"
-    ACCOUNT_SID = 'AC66fe222ac78b6a424d42577aca96424a'
-    AUTH_TOKEN = '43a273da95bf36bc354e99ea131bda3d'
+    def text_alert_on
+      p "Text alert is ON from method!!"
+      p "Monitor is ON from method!!"
+      @monitor = Cam.find(params[:id]) # this may not be Cam... but User.. since phone is attached to user.
+      @monitor.update(text_alerts: true)
+      monitoring = Firebase::Client.new("https://blistering-heat-6382.firebaseio.com/")
+      response = monitoring.update("monitor/status", {:save_alerts => 'yes', :check => 'on', :text => 'off'})
+      redirect_to cams_path
+    end
+
+
+    def text_alert_off
+      p "Text alert is OFF from method!!"
+      p "Monitor is ON from method!!"
+      @monitor = Cam.find(params[:id])
+      @monitor.update(text_alerts: false)
+      monitoring = Firebase::Client.new("https://blistering-heat-6382.firebaseio.com/")
+      response = monitoring.update("monitor/status", {:save_alerts => 'yes', :check => 'on', :text => 'off'})
+      redirect_to cams_path
+    end
 
     # GET /text_messages/new
     def new
@@ -13,42 +29,7 @@ class SendTextController < ApplicationController
 
     # POST /text_messages
     def create
-      @text_message = TextMessage.new(params[:text_message])
 
-      if @text_message.valid?
-
-        successes = []
-        errors = []
-        numbers = @text_message.numbers_array
-        account = Twilio::REST::Client.new(ACCOUNT_SID, AUTH_TOKEN).account
-        numbers.each do |number|
-
-          logger.info "sending message: #{@text_message.message} to: #{number}"
-
-          begin
-            account.sms.messages.create(
-                :from => TWILIO_NUMBER,
-                :to => "+1#{number}",
-                :body => @text_message.message
-            )
-            successes << "#{number}"
-          rescue Exception => e
-            logger.error "error sending message: #{e.to_s}"
-            errors << e.to_s
-          end
-        end
-
-        flash[:errors] = errors
-        flash[:successes] = successes
-        if (flash[:errors].any?)
-          render :action => :status, :status => :bad_request
-        else
-          render :action => :status
-        end
-
-      else
-        render :action => :new, :status => :bad_request
-      end
     end
 
 end

@@ -7,7 +7,7 @@ attr_accessor :power, :id
       @monitor = Cam.find(params[:id])
       @monitor.update(monitoring: true)
       monitoring = Firebase::Client.new("https://blistering-heat-6382.firebaseio.com/")
-      response = monitoring.update("monitor/status", {:save_alerts => 'yes', :check => 'on'})
+      response = monitoring.update("monitor/status", {:save_alerts => 'yes', :check => 'on', :text => 'off'})
       redirect_to cams_path
     end
 
@@ -16,7 +16,7 @@ attr_accessor :power, :id
       @monitor = Cam.find(params[:id])
       @monitor.update(monitoring: false)
       monitoring = Firebase::Client.new("https://blistering-heat-6382.firebaseio.com/")
-      response = monitoring.update("monitor/status", {:save_alerts => 'no', :check => 'off'})
+      response = monitoring.update("monitor/status", {:save_alerts => 'no', :check => 'off', :text => 'off'})
       redirect_to cams_path
     end
 
