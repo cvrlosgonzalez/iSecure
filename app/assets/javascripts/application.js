@@ -54,34 +54,43 @@ $( document ).ready(function() {
       var option = parseBool(camspower) //turn string true/false into bool true/false
       console.info('power option selected is: ' + option);
 
-
-
       if(option){ user_option = "ON" } else { user_option = "OFF"};
-      console.log('user_option is ' + user_option);
-      user_confirm = confirmation('You are about to turn the camera ' + user_option + '. Click ok to confirm and proceed.')
-      console.log('user_confirm is ' + user_confirm);
+      console.log('after IF statement, user_option is ' + user_option);
+      // user_confirm = confirmation('You are about to turn the camera ' + user_option + '. Click ok to confirm and proceed.')
+      // console.log('user_confirm is ' + user_confirm);
 
-
-      if(user_option == "ON" && user_confirm === true){
+// display whether cam is on of off
+      // if(user_option == "ON" && user_confirm === true){
+      if(user_option == "ON"){
         var ref = new Firebase('wss://developer-api.nest.com');
         toggle_power(option);
-        $('#cam_status').text("Camera status changed to "+ user_option, "block");
-        $('#cam_status').css("display", "block");
-        $('#cam_power_true').css("selected", "selected")
-      } else if (user_option == "OFF" && user_confirm === true) {
+        // user selects ON and confirms true
+                    // $('#cam_status').text("Camera status changed to "+ user_option, "block");
+                    // $('#cam_status').css("display", "block");
+                    // $('#cam_status').css("background-color","green")
+                    // $('#cam_status').css("color","white")
+                    // $('#cam_power_true').css("selected", "selected")
+                    // $('#alerts').css("display", "block");
+      // } else if (user_option == "OFF" && user_confirm === true) {
+      } else if (user_option == "OFF") {
+        var ref = new Firebase('wss://developer-api.nest.com');
         toggle_power(option);
-        $('#cam_status').text("Camera status changed to "+user_option, "block");
-        $('#cam_status').css("display", "block");
-        $('#cam_power_false').css("selected", "selected")
+                    // $('#cam_status').text("Camera status changed to "+ user_option, "block");
+                    // $('#cam_status').css("display", "block");
+                    // $('#cam_status').css("background-color","red");
+                    // $('#cam_status').css("color","white");
+                    // $('#cam_power_false').css("selected", "selected");
+                    // $('#alerts').css("display", "none");
       } else {
         $('#cam_status').text("No changes have been made to the camera's power status. ", "block");
 
         //insert firebase call to get real camera status
-        $('#cam_status').append("\nCamera status is: " + user_option);
-        $('#cam_status').css("display", "block");
+        // $('#cam_status').append("\nCamera status is: " + user_option);
+        // $('#cam_status').css("display", "block");
       };
     })
 
+// PHOTOS TO DISPLAY WHEN ALERTS ARE ON
 // toggle animated_url which is hidden below thumbnail image
     $('.alert_photos').on("click", function() {
        var id_num = $(this).closest('div').attr('id');
@@ -115,6 +124,7 @@ $( document ).ready(function() {
       };
       checkForNewAlerts();
 
+      // get Firebase status to update screen whenever a change is made.
       function checkStatus(){
         var ref2 = new Firebase("https://blistering-heat-6382.firebaseio.com/monitor");
         ref2.on ("child_changed", function(snapshot) {
@@ -122,16 +132,41 @@ $( document ).ready(function() {
             // $( '</div id="status_btn">Alerts being saved? ' + status.save_alerts + ' <br><br>' ).prependTo( '#alerts_container' );
             var power = "";
             var powerstatus = (status.power === true) ? power ='ON': power = 'OFF';
-            console.log(powerstatus);
-            if(powerstatus == 'ON') {
-              $('#cam_status').html('</div id="status_btn">Camera\'s Power is ' + power + '</div>');
-              $('#cam_status').css("display", "block");
-            }
+            console.log("alerts >: " + alerts);
 
-            $('#alert_status').html('<div id="status_btn">Alerts being saved? ' + status.save_alerts.toUpperCase() + '</div>');
+            console.log("power is >: " + power);
+            $('#cam_status').html('<div id="status_btn">Camera\'s Power is ' + power + '</div>');
+            $('#cam_status').css("color","white")
             $('#cam_status').css("display", "block");
 
-            $('.refresh_btn').css("color", "red");
+            if(power == 'ON') {
+              $('#cam_status').css("background-color","green");
+              $('#monitor_off').css("selected", "selected")
+              $('#alerts').css("display","block");
+
+            } else if (power == 'OFF') {
+              // $('#cam_status').html('<div id="status_btn">Camera\'s Power is ' + power + '</div>');
+              $('#cam_status').css("background-color","red");
+              // $('#cam_status').css("color","white")
+              // $('#cam_status').css("display", "block");
+              $('#alerts').css("display","none");
+            }
+
+            var alerts = "";
+            var alertstatus = (status.save_alerts == "yes") ? alerts ='ON': alerts = 'OFF';
+            console.log("alerts >: " + alerts);
+            $('#alert_status').html('<div id="status_btn">Alerts being saved? ' + status.save_alerts.toUpperCase() + '</div>');
+            $('#alert_status').css("color","white");
+            $('#cam_status').css("display", "block");
+
+            if(alerts == 'ON') {
+              $('#alert_status').css("background-color","green  ");
+            } else if (alerts == 'OFF'){
+              $('#alert_status').css("background-color","red");
+            }
+
+
+            // $('.refresh_btn').css("color", "red");
             console.log('do we save alerts? : '+ status.save_alerts);
             console.log('name is is: '+ status.user);
             console.log('name is is: '+ status.power); // power will be true/false
