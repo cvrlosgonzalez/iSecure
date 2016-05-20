@@ -84,16 +84,18 @@ console.log('monVal is::::' + monVal);
       };
     })
 
-// toggle alerts
+// toggle text alerts
       $('.text_alert_toggle').on("click", function(){
           var text_option = $(this).attr('value');
+          var cam_id = $("#cam_id_").attr('value')
+          console.log('cam_id ' + cam_id);
+          console.log('text_option ' + text_option);
           var text_bool = parseBool(text_option) //turn string true/false into bool true/false
 
-          console.log('text_option ' + text_bool);
           if(text_bool){ text_alerts_option = "on" } else { text_alerts_option = "off"};
 
           $.ajax({
-              url: "/textfire_" + text_alerts_option + "/" + cam_id
+              url: "/textfire_" + text_option + "/" + cam_id
           })
             .done(function() {
       console.log('monVal is::::' + monVal);

@@ -14,8 +14,8 @@ Rails.application.routes.draw do
   # get '/monitorfire/:id/' => 'monitor#firebase'
   get 'monitorfire/:id' => 'monitor#show'
 
-  get 'textfire_on/:id' => 'sendtext#text_alert_on', as :text_alert
-  get 'textfire_off/:id' => 'sendtext#text_alert_off', as :text_alert
+  get 'textfire_on/:id' => 'send_text#text_alert_on' #, as :text_alert
+  get 'textfire_off/:id' => 'send_text#text_alert_off' #, as :text_alert
 
   # root :to => "pages#show", :id => 3
   # get 'cam_alert/OFF' => 'alerts#monitor_off'

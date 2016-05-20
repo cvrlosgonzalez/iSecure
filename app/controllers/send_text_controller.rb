@@ -1,20 +1,35 @@
 class SendTextController < ApplicationController
-  def index
-  end
 
-  def send_text_message
-    number_to_send_to = "3054316702"
-    puts "Hello! Sending text"
-    twilio_sid = "AC66fe222ac78b6a424d42577aca96424a"
-    twilio_token = "43a273da95bf36bc354e99ea131bda3d"
-    twilio_phone_number = "7733624308"
+    def text_alert_on
+      p "Text alert is ON from method!!"
+      p "Monitor is ON from method!!"
+      @monitor = Cam.find(params[:id]) # this may not be Cam... but User.. since phone is attached to user.
+      @monitor.update(text_alerts: true)
+      monitoring = Firebase::Client.new("https://blistering-heat-6382.firebaseio.com/")
+      response = monitoring.update("monitor/status", {:save_alerts => 'yes', :check => 'on', :text => 'off'})
+      redirect_to cams_path
+    end
 
-    @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
 
-    @twilio_client.account.sms.messages.create(
-      :from => "+1#{twilio_phone_number}",
-      :to => number_to_send_to,
-      :body => "This is an message. It gets sent to #{number_to_send_to}"
-    )
-  end
+    def text_alert_off
+      p "Text alert is OFF from method!!"
+      p "Monitor is ON from method!!"
+      @monitor = Cam.find(params[:id])
+      @monitor.update(text_alerts: false)
+      monitoring = Firebase::Client.new("https://blistering-heat-6382.firebaseio.com/")
+      response = monitoring.update("monitor/status", {:save_alerts => 'yes', :check => 'on', :text => 'off'})
+      redirect_to cams_path
+    end
+
+    # GET /text_messages/new
+    def new
+      @text_message = TextMessage.new
+      render :new
+    end
+
+    # POST /text_messages
+    def create
+
+    end
+
 end
