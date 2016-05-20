@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160519134655) do
+ActiveRecord::Schema.define(version: 20160520164513) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,11 +29,12 @@ ActiveRecord::Schema.define(version: 20160519134655) do
   create_table "cams", force: :cascade do |t|
     t.string   "title"
     t.string   "alert"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.integer  "user_id"
     t.boolean  "monitoring"
     t.string   "api_name"
+    t.boolean  "text_alerts"
   end
 
   add_index "cams", ["user_id"], name: "index_cams_on_user_id", using: :btree
