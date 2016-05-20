@@ -131,6 +131,7 @@ console.log('monVal is::::' + monVal);
 
 
     // get latest alert without screen refresh. either alert user to refresh or update page with prepend.
+
     function checkForNewAlerts(){
       var ref = new Firebase("https://blistering-heat-6382.firebaseio.com/alerts/");
       ref.on ("child_changed", function(snapshot) {
@@ -146,6 +147,7 @@ console.log('monVal is::::' + monVal);
         });
       };
       checkForNewAlerts();
+
 
 // get Firebase status to update screen whenever a change is made.
 // changes to Firebase are triggered by turning power OR alerts on/off.
