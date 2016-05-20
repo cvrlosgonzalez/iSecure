@@ -41,6 +41,9 @@ namespace :nest do
               #write alert to Firebase
               last_alert = Firebase::Client.new("https://blistering-heat-6382.firebaseio.com/alerts")
               response = last_alert.update("data", {:image_url => image_url, :animated_url => animated_url,:last_alert =>  last_event})
+              p "send a text"
+              Mms.send_text
+              p "OK sent it already"
             end
           end
 
