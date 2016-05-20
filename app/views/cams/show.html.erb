@@ -5,7 +5,7 @@
   <%= @cam.title %>
 </p>
 
-<div id ="cam_status">Camera's Power is ..</div>
+<div id ="cam_status">Camera's Power</span></div>
 <div id ="alert_status">Alerts being saved? ..</div>
 
 <div class="dropdown">
@@ -15,7 +15,7 @@
 
       <li><strong>Power</strong> - Turn the camera's power on/off</li>
 
-      <div class="switch-toggle well">
+      <div id="power" class="switch-toggle well">
         <input type="radio" name="cam_power" id="cam_power_true" value="true" class="cams_power" data-toggle="toggle">
         <label for="cam_power_true" onclick="">On</label>
 
@@ -24,17 +24,19 @@
         <a class="btn btn-primary"></a>
       </div>
 
-      <li><strong>Alerts</strong> - Do you want to save alerts?</li>
+      <div id="alerts">
+        <li><strong>Alerts</strong> - Do you want to save alerts?</li>
 
-        <div class="switch-toggle well">
-          <input type="radio" name="monitor" id="monitor_on" value="on" class="monitor_toggle" data-toggle="toggle">
-          <label for="monitor_on" onclick="">On</label>
+          <div class="switch-toggle well">
+            <input type="radio" name="monitor" id="monitor_on" value="on" class="monitor_toggle" data-toggle="toggle">
+            <label for="monitor_on" onclick="">On</label>
 
-          <input type="radio" name="monitor" id="monitor_off" value="off" class="monitor_toggle" data-toggle="toggle">
-          <label for="monitor_off" onclick="">Off</label>
-            <a class="btn btn-primary"></a>
-        </div>
-
+            <input type="radio" name="monitor" id="monitor_off" value="off" class="monitor_toggle" data-toggle="toggle">
+            <label for="monitor_off" onclick="">Off</label>
+              <a class="btn btn-primary"></a>
+          </div>
+      </div>
+      
       <br>
 
         <li>  <strong><%= link_to 'Change Camera Name', edit_cam_path(@cam) %></li>
