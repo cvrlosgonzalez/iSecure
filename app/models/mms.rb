@@ -5,9 +5,9 @@ class Mms
     @client = Twilio::REST::Client.new "AC66fe222ac78b6a424d42577aca96424a", "43a273da95bf36bc354e99ea131bda3d"
     @client.messages.create(
         from: '+17733624308',
-        to: '+13054316702',
+        to: "+1#{User.last.pnumber}", #for testing purposes
         body: 'Alert notification!',
-        media_url: @alert.last.animated_url
+        media_url: Alert.last.animated_url
       )
   end
 
