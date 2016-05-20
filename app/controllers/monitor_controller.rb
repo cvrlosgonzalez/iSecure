@@ -7,7 +7,7 @@ attr_accessor :power, :id
       @monitor = Cam.find(params[:id])
       @monitor.update(monitoring: true)
       monitoring = Firebase::Client.new("https://blistering-heat-6382.firebaseio.com/")
-      response = monitoring.update("monitor/status", {:save_alerts => 'yes'})
+      response = monitoring.update("monitor/status", {:save_alerts => 'yes', :check => 'on', :text => 'off'})
       redirect_to cams_path
     end
 
@@ -16,7 +16,7 @@ attr_accessor :power, :id
       @monitor = Cam.find(params[:id])
       @monitor.update(monitoring: false)
       monitoring = Firebase::Client.new("https://blistering-heat-6382.firebaseio.com/")
-      response = monitoring.update("monitor/status", {:save_alerts => 'no'})
+      response = monitoring.update("monitor/status", {:save_alerts => 'no', :check => 'off', :text => 'off'})
       redirect_to cams_path
     end
 
@@ -40,7 +40,7 @@ attr_accessor :power, :id
       # pp response.body
       # add power status to firebase so cam page can display, in case user cancels out of a power state change.
       power_status = Firebase::Client.new("https://blistering-heat-6382.firebaseio.com/")
-      response = power_status.update("monitor/status", {:power => power_on_boolean})
+      response = power_status.update("monitor/status", {:power => power_on_boolean, :save_alerts => "no"})
       redirect_to cam_path
     end
 end
