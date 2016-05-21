@@ -2,7 +2,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 body {
-  background-color:#929292; 
+  background-color:#929292;
 }
 h1 {
   font-size: 1.2em;
@@ -47,6 +47,9 @@ h1 {
   padding: 15px;
   border: dashed 1px #BBBBBB;
   margin: 0 0 20px 0;
+  -webkit-box-shadow: 10px 10px 17px 1px rgba(112,112,112,0.94);
+-moz-box-shadow: 10px 10px 17px 1px rgba(112,112,112,0.94);
+box-shadow: 10px 10px 17px 1px rgba(112,112,112,0.94);
 }
 // end status section
 .camera_setting_menu{
