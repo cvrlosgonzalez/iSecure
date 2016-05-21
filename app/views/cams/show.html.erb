@@ -1,16 +1,21 @@
 <%= hidden_field(:cam_id, "",:value => @cam.id) %>
 
+<div id = "dashboard" class="flex">
+  <div id ="cam_status" class="stat">Camera's Power ..</span></div>
+  <div id ="alert_status" class="stat">Alerts being saved? ..</div>
+  <div id ="text_status" class="stat">Text message status ..</div>
+</div>
+
 <p>
-  <strong>Title:</strong>
-  <%= @cam.title %>
+  <strong>Camera name: </strong><%= @cam.title %>
+  <ul>
+    <li><strong><%= link_to 'Change Camera Name', edit_cam_path(@cam) %></li>
+    <li><%= link_to 'See all Cameras', cams_path %></li></strong>
+  </ul>
 </p>
 
-<div id ="cam_status" class="stat">Camera's Power ..</span></div>
-<div id ="alert_status" class="stat">Alerts being saved? ..</div>
-<div id ="text_status" class="stat">Text message status ..</div>
-
 <div class="dropdown">
-  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Manage
+  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Manage Camera Settings
   <span class="caret"></span></button>
   <ul class="dropdown-menu">
 
@@ -51,18 +56,12 @@
               <a class="btn btn-primary"></a>
           </div>
       </div>
-
-
       <br>
-
-        <li>  <strong><%= link_to 'Change Camera Name', edit_cam_path(@cam) %></li>
-        <li><%= link_to 'Home', cams_path %></li></strong>
 
   </ul>
 </div>
 
 <br>
-<%= link_to 'List all Cameras', cams_path %>
 
 <div class="paginate">
   <%= paginate @alerts %><br>
