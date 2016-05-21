@@ -59,9 +59,12 @@ function set_monitor_to_off() {
 
 function set_text_alerts_to_off() {
   var cam_id = $("#cam_id_").attr('value')
-  $.ajax({
-      url: "/textfire_off/" + cam_id
-  })
+  var page_name = $("#page_name_").attr('value')
+  if(page_name == "cam_page"){
+    $.ajax({
+        url: "/textfire_off/" + cam_id
+    })
+  }
 };
 
 function status_check() {
@@ -82,10 +85,14 @@ function status_check() {
 // }
 
 $( document ).ready(function() {
+//make sure we are on the cams page to set texts to off.
+var page_name = $("#page_name_").attr('value')
+if(page_name == "cam_page"){
+  console.log("this is the cam page!!!");
+  $('#texting').css("display", "none");
   status_check(); //check firebase to update status of power, alerts and texts
-// toggle defaults
-$('#texting').css("display", "none");
-set_text_alerts_to_off();
+  set_text_alerts_to_off();
+}
 // $('#monitor_off').prop('checked', true);
 // set_monitor_to_off();
 
@@ -140,6 +147,9 @@ set_text_alerts_to_off();
               $('#alert_status').css("background-color", "green");
             } else {
               $('#alert_status').css("background-color", "red");
+              set_monitor_to_off();
+              set_text_alerts_to_off();
+              status_check();
             }
           })
         });
@@ -206,16 +216,10 @@ set_text_alerts_to_off();
         var randomNum = Math.floor(Math.random() * 200);
         console.log('Randon num is >' + randomNum);
         var theTime = Math.round(new Date().getTime()/1000);
-        // var hours = theTime.getHours();
-        // // Minutes part from the timestamp
-        // var minutes = "0" + theTime.getMinutes();
-        // // Seconds part from the timestamp
-        // var seconds = "0" + theTime.getSeconds()
-        //  theTime = hours + ' ' + minutes + ' ' + seconds;
          console.log(theTime);
 // display image and hide anumated image. i dont think this is working because DOM has been rendered, so nothing is bound to this element.
         // $( '<div id="' + newDivID + '_imageholder" class="animated_display" style="display:none"> <img src="' + resp.animated_url + '" alt="" class="img-ani"></div>').prependTo( '#alerts_container');
-        $( '<small> New Alert! <br> ' + resp.last_alert + '<br></small> <div id="' + newDivID + '" style="display:block;>" ><img src="' + resp.animated_url + '" alt="" class="alert_photos" /></div>').prependTo( '#alerts_container');
+        $( '<small><a href="#" onClick="window.location.reload()"> New Alert! click here to refresh page for more detail.</a> <br> ' + resp.last_alert + '<br></small> <div id="' + newDivID + '" style="display:block;>" ><img src="' + resp.animated_url + '" alt="" class="alert_photos" /></div>').prependTo( '#alerts_container');
         // $( '<small> New Alert! <br></small> <div id="' + newDivID + '" style="display:block;>" ><img src="' + resp.image_url + '" alt="" class="alert_photos" /></div>').prependTo( '#alerts_container');
 
           // $( '<img src="'+ resp.image_url + '" class="alert_photos"> <br><br>' ).prependTo( '#alerts_container' );
@@ -280,11 +284,14 @@ set_text_alerts_to_off();
               $('#monitor_on').prop('checked', true);
               $('#monitor_off').prop('checked', false);
               console.log('alerts setcion');
+              status_check();
+
             } else if (alerts == 'OFF'){
               $('#alert_status').css("background-color","red");
               $('#alert_status').css("display", "none");
               $('#texting').css("display", "none");
               $('#monitor_off').prop('checked', true);
+              status_check();
 
             }
 
@@ -306,7 +313,7 @@ set_text_alerts_to_off();
 
             } else if (texts == 'OFF'){
               $('#text_status').css("background-color","red");
-              // $('#monitor_off').prop('checked', true);
+              $('#text_alert_off').prop('checked', true);
 
             }
 
@@ -318,8 +325,12 @@ set_text_alerts_to_off();
           });
         };
 
-        checkForNewAlerts();
-        checkStatus();
+        var page_name = $("#page_name_").attr('value')
+        if(page_name == "cam_page"){
+          console.log("ready to check for alerts and status");
+          checkForNewAlerts();
+          checkStatus();
+        }
 
 });
 
