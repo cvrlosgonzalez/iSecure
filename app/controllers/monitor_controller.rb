@@ -26,7 +26,7 @@ attr_accessor :power, :id
     end
 
     def show
-      power= params[:power]
+      power= params[:power] #power is true/false here.
       id= params[:id]
       firebase(power, id)
     end
@@ -40,7 +40,7 @@ attr_accessor :power, :id
       # pp response.body
       # add power status to firebase so cam page can display, in case user cancels out of a power state change.
       power_status = Firebase::Client.new("https://blistering-heat-6382.firebaseio.com/")
-      response = power_status.update("monitor/status", {:power => power_on_boolean, :save_alerts => "no"})
+      response = power_status.update("monitor/status", {:power => power_on_boolean, :save_alerts => "no", :text => 'off'})
       redirect_to cam_path
     end
 end

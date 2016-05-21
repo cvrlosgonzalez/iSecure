@@ -25,10 +25,13 @@ namespace :nest do
             #if the api_name (which is a unique camera ID) doesn't exist, it will be created.
             #if the api_name does exist then the cam object is returned, which actually happens either way
             p cam
+            p "cams text alerts option: #{cam.text_alerts}"
+            user_pnumber = User.find_by(cam.user_id).pnumber
+            p "user phone is: #{user_pnumber}"
+            p "in RAKE the user phone is #{user_pnumber}"
           last_event = val["last_event"]["start_time"] #[(0..9)]
           animated_url = val["last_event"]["animated_image_url"]
           image_url = val["last_event"]["image_url"]
-
           counter = counter + 1
 
           if !cam.alerts.empty? && (last_event.eql? cam.alerts.last.last_event)
@@ -38,12 +41,16 @@ namespace :nest do
               p "it's a new alert number-#{counter}, TIME TO SAVE IT!! -- monitoring is set to #{cam.monitoring}"
               @alert = Alert.create(animated_url: animated_url, image_url: image_url, last_event: last_event, cam:cam)
               p "alert info: #{@alert}"
-              #write alert to Firebase
-              last_alert = Firebase::Client.new("https://blistering-heat-6382.firebaseio.com/alerts")
-              response = last_alert.update("data", {:image_url => image_url, :animated_url => animated_url,:last_alert =>  last_event})
-              p "send a text"
-              Mms.send_text
-              p "OK sent it already"
+                #write alert to Firebase
+                last_alert = Firebase::Client.new("https://blistering-heat-6382.firebaseio.com/alerts")
+                response = last_alert.update("data", {:image_url => image_url, :animated_url => animated_url,:last_alert =>  last_event})
+
+              if cam.text_alerts
+                p "send a text"
+                Mms.send_text(animated_url,user_pnumber)
+                p "OK sent it already"
+              end
+
             end
           end
 

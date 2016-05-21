@@ -19,6 +19,7 @@ class CamsController < ApplicationController
   # GET /cams/new
   def new
     @cam = Cam.new
+    @cam.user_id = current_user.id
   end
 
   # GET /cams/1/edit
@@ -29,7 +30,8 @@ class CamsController < ApplicationController
   # POST /cams.json
   def create
     @cam = Cam.new(cam_params)
-
+    @cam.user_id = current_user.id
+    
     respond_to do |format|
       if @cam.save
         format.html { redirect_to @cam, notice: 'Cam was successfully created.' }

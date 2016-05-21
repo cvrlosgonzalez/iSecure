@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   get '/monitor_off/:id' => 'monitor#monitor_off', as: :monitor_off
   # get '/monitorfire/:id/' => 'monitor#firebase'
   get 'monitorfire/:id' => 'monitor#show'
-
+  
   get 'textfire_on/:id' => 'send_text#text_alert_on' #, as :text_alert
   get 'textfire_off/:id' => 'send_text#text_alert_off' #, as :text_alert
 
