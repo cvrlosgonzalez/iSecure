@@ -2,6 +2,13 @@ class MonitorController < ApplicationController
 
 attr_accessor :power, :id
 
+    def status_check
+      status = Firebase::Client.new("https://blistering-heat-6382.firebaseio.com/")
+      setCheck = status.update("monitor/status", {:check => 'onload'})
+      redirect_to cams_path
+    end
+
+
     def monitor_on
       p "Monitor is ON from method!!"
       @monitor = Cam.find(params[:id])

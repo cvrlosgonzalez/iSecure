@@ -5,7 +5,7 @@ class SendTextController < ApplicationController
       @monitor = Cam.find(params[:id]) # this may not be Cam... but User.. since phone is attached to user.
       @monitor.update(text_alerts: true)
       monitoring = Firebase::Client.new("https://blistering-heat-6382.firebaseio.com/")
-      response = monitoring.update("monitor/status", {:save_alerts => 'yes', :check => 'on', :text => 'on'})
+      response = monitoring.update("monitor/status", { :check => 'on', :text => 'on'}) #:save_alerts => 'yes',
       redirect_to cams_path
     end
 
@@ -15,7 +15,7 @@ class SendTextController < ApplicationController
       @monitor = Cam.find(params[:id])
       @monitor.update(text_alerts: false)
       monitoring = Firebase::Client.new("https://blistering-heat-6382.firebaseio.com/")
-      response = monitoring.update("monitor/status", {:save_alerts => 'yes', :check => 'on', :text => 'off'})
+      response = monitoring.update("monitor/status", { :check => 'on', :text => 'off'}) #:save_alerts => 'yes',
       redirect_to cams_path
     end
 

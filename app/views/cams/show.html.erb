@@ -5,9 +5,9 @@
   <%= @cam.title %>
 </p>
 
-<div id ="cam_status">Camera's Power ..</span></div>
-<div id ="alert_status">Alerts being saved? ..</div>
-<div id ="text_message">Text message status ..</div>
+<div id ="cam_status" class="stat">Camera's Power ..</span></div>
+<div id ="alert_status" class="stat">Alerts being saved? ..</div>
+<div id ="text_status" class="stat">Text message status ..</div>
 
 <div class="dropdown">
   <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Manage
@@ -80,7 +80,7 @@
     </div>
     <div id="<%= alert.id %>_imageholder" class="animated_display">
       <img src="<%=alert.animated_url%>" alt="" class="img-ani" >
-      <% @send_text_message %>
+      <% @send_text_status %>
     </div>
   <% end %>
 </div>

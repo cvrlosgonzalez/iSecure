@@ -17,6 +17,9 @@
 
 //= require bootstrap
 
+
+
+
 function parseBool(val) { return val === true || val === "true" }
 
 function confirmation(text){
@@ -40,7 +43,7 @@ function toggle_power(option){  //turn camera on or off
         $('#cam_status').css("background-color", "green");
       } else {
         $('#cam_status').css("background-color", "red");
-        $('#text_message').css("background-color", "red");
+        $('#text_status').css("background-color", "red");
         set_monitor_to_off();
         set_text_alerts_to_off();
       }
@@ -60,40 +63,31 @@ function set_text_alerts_to_off() {
       url: "/textfire_off/" + cam_id
   })
 };
+
+function status_check() {
+  var cam_id = $("#cam_id_").attr('value')
+  $.ajax({
+    url: "/status_check/" + cam_id
+  })
+};
+
 //----------document ready below------------------------------
 
+// block_toggle('alert', "Alerts being saved? NO", 'block' , red)
+//
+// function block_toggle(clas, msg, disp, *){
+//   $('#'+ clas + '_status').text(msg);
+//   $('#alert_status').css("background-color", "red");
+//   $('#alert_status').css("display", "block");
+// }
+
 $( document ).ready(function() {
+  status_check(); //check firebase to update status of power, alerts and texts
 // toggle defaults
 $('#texting').css("display", "none");
 set_text_alerts_to_off();
-$('#monitor_off').prop('checked', true);
-set_monitor_to_off();
-
-//alert saving (aka monitor/monitoring) section turn on/off
-    $('.monitor_toggle').on("click", function(){
-      console.log("click works");
-      var monId = $(this).attr('id');
-      var monVal = $(this).attr('value')
-      var cam_id = $("#cam_id_").attr('value')
-    $.ajax({
-        url: "/monitor_" + monVal + "/" + cam_id
-    })
-      .done(function() {
-console.log('monVal is::::' + monVal);
-        monitor_status = ""
-        if(monVal == 'on'){monitor_status = 'YES'} else {monitor_status = 'NO'}
-        $('#alert_status').text("Alerts being saved?: " + monVal.toUpperCase());
-        $('#alert_status').css("display", "block");
-        $('#monitor_' + monVal).prop('checked', true);
-
-        if (monVal == 'on') {
-          $('#alert_status').css("display", "block");
-          $('#alert_status').css("background-color", "green");
-        } else {
-          $('#alert_status').css("background-color", "red");
-        }
-      })
-    });
+// $('#monitor_off').prop('checked', true);
+// set_monitor_to_off();
 
 // turn power off and on
     $('.cams_power').on("click", function(){
@@ -112,19 +106,44 @@ console.log('monVal is::::' + monVal);
         var ref = new Firebase('wss://developer-api.nest.com');
         toggle_power(option);
         //show alerts as off
-        $('#alert_status').css("display", "block");
-        $('#alert_status').css("background-color", "red");
         $('#alert_status').text("Alerts being saved? NO");
+        $('#alert_status').css("background-color", "red");
+        $('#alert_status').css("display", "block");
         //show text alerts as off
-        $('#text_message').css("display", "block");
-        $('#text_message').css("background-color", "red");
-        $('#text_message').text("Text message status: ");
-
+        $('#text_status').text("Text message status: " + user_option );
+        $('#text_status').css("background-color", "red");
+        $('#text_status').css("display", "block");
       } else {
         $('#cam_status').text("No changes have been made to the camera's power status. ", "block");
-
       };
     })
+
+    //alert saving (aka monitor/monitoring) section turn on/off
+        $('.monitor_toggle').on("click", function(){
+          console.log("click works");
+          var monId = $(this).attr('id');
+          var monVal = $(this).attr('value')
+          var cam_id = $("#cam_id_").attr('value')
+        $.ajax({
+            url: "/monitor_" + monVal + "/" + cam_id
+        })
+          .done(function() {
+    console.log('monVal is::::' + monVal);
+            monitor_status = ""
+            if(monVal == 'on'){monitor_status = 'YES'} else {monitor_status = 'NO'}
+            $('#alert_status').text("Alerts being saved?: " + monVal.toUpperCase());
+            $('#alert_status').css("display", "block");
+            $('#monitor_' + monVal).prop('checked', true);
+
+            if (monVal == 'on') {
+              $('#alert_status').css("display", "block");
+              $('#alert_status').css("background-color", "green");
+            } else {
+              $('#alert_status').css("background-color", "red");
+            }
+          })
+        });
+
 
 // ---- toggle text alerts - do you want to get a text message for alerts?
       $('.text_alert_toggle').on("click", function(){
@@ -142,15 +161,15 @@ console.log('monVal is::::' + monVal);
             .done(function() {
               //update the screen
               console.log('text_option is::::' + text_option);
-              $('#text_message').text("Text message status: " + text_option.toUpperCase());
-              $('#text_message').css("display", "block");
+              $('#text_status').text("Text message status: " + text_option.toUpperCase());
+              $('#text_status').css("display", "block");
               // $('#monitor_' + monVal).css("selected", "selected")
               if (text_option == 'on') {
-                $('#text_message').css("background-color", "green");
+                $('#text_status').css("background-color", "green");
                 $('#text_alert_on').prop('checked', true);
               } else {
                 $('#text_alert_off').prop('checked', true);
-                $('#text_message').css("background-color", "red");
+                $('#text_status').css("background-color", "red");
               }
             })
 //---- end text alerts
@@ -177,17 +196,41 @@ console.log('monVal is::::' + monVal);
       var ref = new Firebase("https://blistering-heat-6382.firebaseio.com/alerts/");
       ref.on ("child_changed", function(snapshot) {
         var resp = snapshot.val();
-          $( '<img src="'+ resp.image_url + '" class="alert_photos"> <br><br>' ).prependTo( '#alerts_container' );
-          $( '<p>A new image is available. Refresh page to view details</p>' ).prependTo( '#alerts_container' );
-          $('.refresh_btn').css("display", "block");
-          $('.refresh_btn').css("color", "red");
+
+        // var theFirstDiv = $('#alerts_container div:first-child').attr('id');
+        // console.dir('theFirstDiv is '+theFirstDiv);
+        var theLastAlertDiv =  $( "#alerts_container div:first" ).attr('id');
+        var newDivID = theLastAlertDiv + 1;
+        var numDiv = parseInt(newDivID, 10);
+        var numDiv = numDiv + 1;
+        console.dir('theDiv is '+ newDivID);
+        console.dir('numDiv is '+ numDiv);
+        var randomNum = Math.floor(Math.random() * 200);
+        console.log('Randon num is >' + randomNum);
+        var theTime = Math.round(new Date().getTime()/1000);
+        // var hours = theTime.getHours();
+        // // Minutes part from the timestamp
+        // var minutes = "0" + theTime.getMinutes();
+        // // Seconds part from the timestamp
+        // var seconds = "0" + theTime.getSeconds()
+        //  theTime = hours + ' ' + minutes + ' ' + seconds;
+         console.log(theTime);
+// display image and hide anumated image. i dont think this is working because DOM has been rendered, so nothing is bound to this element.
+        // $( '<div id="' + newDivID + '_imageholder" class="animated_display" style="display:none"> <img src="' + resp.animated_url + '" alt="" class="img-ani"></div>').prependTo( '#alerts_container');
+        $( '<small> New Alert! <br> ' + theTime + '<br></small> <div id="' + newDivID + '" style="display:block;>" ><img src="' + resp.animated_url + '" alt="" class="alert_photos" /></div>').prependTo( '#alerts_container');
+        // $( '<small> New Alert! <br></small> <div id="' + newDivID + '" style="display:block;>" ><img src="' + resp.image_url + '" alt="" class="alert_photos" /></div>').prependTo( '#alerts_container');
+
+          // $( '<img src="'+ resp.image_url + '" class="alert_photos"> <br><br>' ).prependTo( '#alerts_container' );
+          // $( '<p>A new image is available. Refresh page to view details</p>' ).prependTo( '#alerts_container' );
+          // $('.refresh_btn').css("display", "block");
+          // $('.refresh_btn').css("color", "red");
           console.log('new alert! : '+ resp.last_alert);
           // ref.remove(); //can remove it, but since this data is in 'alerts' branch, no need to.
         }, function (errorObject) {
         console.log("The read failed: " + errorObject.code);
         });
       };
-      checkForNewAlerts();
+
 
 // get Firebase status to update screen whenever a change is made.
 // changes to Firebase are triggered by turning power OR alerts OR texts on/off.
@@ -199,7 +242,6 @@ console.log('monVal is::::' + monVal);
             // $( '</div id="status_btn">Alerts being saved? ' + status.save_alerts + ' <br><br>' ).prependTo( '#alerts_container' );
             var power = "";
             var powerstatus = (status.power === true) ? power ='ON': power = 'OFF';
-
 // power status
             console.log("power is >: " + power);
             $('#cam_status').html('<div id="status_btn">Camera\'s Power : ' + power + '</div>');
@@ -208,12 +250,15 @@ console.log('monVal is::::' + monVal);
 
             if(power == 'ON') {
               $('#cam_status').css("background-color","green");
-              $('#monitor_off').css("checked", "checked") //default to monitor off!
+              $('#monitor_off').prop('checked', true);  //.css("checked", "checked") //default to monitor off!
               $('#alerts').css("display","block");
+              $('#cam_power_true').prop('checked', true);
 
             } else if (power == 'OFF') {
               $('#cam_status').css("background-color","red");
-              //if power is off, no alerts and no texts are available options
+              $('#cam_power_false').prop('checked', true);
+
+              //if power is off, no alerts and no texts, both are unavailable as options
               $('#alerts').css("display","none");
               $('#texting').css("display", "none");
 
@@ -226,33 +271,45 @@ console.log('monVal is::::' + monVal);
             $('#alert_status').html('<div id="status_btn">Alerts being saved? ' + alertstatus + '</div>'); // status.save_alerts.toUpperCase() + '</div>');
             $('#alert_status').css("color","white");
             $('#cam_status').css("display", "block");
+            $('#cam_power_true').prop('checked', true);
+
 
             if(alerts == 'ON') {
               $('#alert_status').css("background-color","green  ");
               $('#alert_status').css("display", "block");
               // $('#alerts').css("display", "block");
               $('#texting').css("display", "block");
+              $('#monitor_on').prop('checked', true);
+              $('#monitor_off').prop('checked', false);
+              console.log('alerts setcion');
             } else if (alerts == 'OFF'){
               $('#alert_status').css("background-color","red");
               $('#alert_status').css("display", "none");
               $('#texting').css("display", "none");
+              $('#monitor_off').prop('checked', true);
+
             }
 
 // text status
             var texts = status.text.toUpperCase();
             // var alertstatus = (status.text == "yes") ? alerts ='ON': alerts = 'OFF';
             console.log("texts >: " + texts);
-            $('#text_message').html('<div id="status_btn">Text message status ' + status.text.toUpperCase() + '</div>');
-            $('#text_message').css("color","white");
-            //if text messages are on, display alert and power (cam) status
+            $('#text_status').html('<div id="status_btn">Text message status ' + status.text.toUpperCase() + '</div>');
+            // $('#text_status').css("background-color","red");
+            $('#text_status').css("color","white");
+            $('#text_status').css("display", "block");
+            //if text messages are on, be sure to display alert and power (cam) status
             $('#alert_status').css("display", "block");
             $('#cam_status').css("display", "block");
 
             if(texts == 'ON') {
-              $('#text_message').css("background-color","green  ");
+              $('#text_status').css("background-color","green  ");
+              $('#monitor_on').prop('checked', true);
 
             } else if (texts == 'OFF'){
-              $('#text_message').css("background-color","red");
+              $('#text_status').css("background-color","red");
+              // $('#monitor_off').prop('checked', true);
+
             }
 
             console.log('do we save alerts? : '+ status.save_alerts);
@@ -262,10 +319,13 @@ console.log('monVal is::::' + monVal);
           console.log("The read failed: " + errorObject.code);
           });
         };
+
+        checkForNewAlerts();
         checkStatus();
+
 });
 
   function start() {
-    set_monitor_to_off();
+    // set_monitor_to_off();
   }
   window.onload = start;
