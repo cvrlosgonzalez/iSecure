@@ -1,13 +1,18 @@
 /* boot strap */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+body {
+  background-color:#929292; 
+}
+h1 {
+  font-size: 1.2em;
+}
  /* dashboard */
 .cams_power {
   display: flex;
   flex-direction: row;
   justify-content: center;
   width: 60%;
-  // background-color: blue;
 }
 // status section
 .stat {
@@ -17,7 +22,6 @@
       width: 35%;
       height: 3%;
       margin: 3%;
-
 }
 
 .status_btn {
@@ -30,34 +34,80 @@
 
 #cam_status #alert_status{
   margin: 2em;
-  // display:none;
 }
+
 .flex {
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
-#dashboard {
-
+.grey_container {
+  background-color: #F8F8F8;
+  border-radius: 25px;
+  padding: 15px;
+  border: dashed 1px #BBBBBB;
+  margin: 0 0 20px 0;
 }
 // end status section
+.camera_setting_menu{
+    margin: 10px auto;
+}
+
+.dropdown-menu {
+  min-width: 70%;
+  padding: 2em;
+}
 
 #alerts_container {
-  width:80%;
-  margin: 2%;
+  width:10  0%;
   background-color: none;
 
+}
+/* header */
+.navbar-right {
+  float: right;
+  margin-right: 30px;
 }
 #nestlogo{
   width: 100px;
   height: 40px;
+  margin: 0 0 15px 15px;
+  float: left;
+}
+
+#logo {
+	font-size: 26px;
+	font-weight: 700;
+	letter-spacing: -1px;
   margin-left: 15px;
+	padding: 15px 0;
+	a {
+		color: #2F363E;
+	}
+  a:hover {
+    text-decoration: none;
+    color: green;
+  }
 }
 
+.user_menu{
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  display:inline-block;
+}
+/* header end */
 
-.paginate {
+.paginate .pagination {
   text-align: right;
+  position: relative;
+  top: 0px;
+  right: 0px;
+  display:inline-block;
+  float: right;
+  margin: 0 15px 10px 10px;
 }
+
 .alert_photos {
   padding: 15px;
   margin: 0;
@@ -90,38 +140,7 @@ td.btn.btn-default.btn-sm{
   display: block
 }
 
-
-// #anilerts {
-//   margin: 0 40px auto;
-// }
-// #anilerts a:hover {
-//   background: none;
-// }
-// #anilerts img {
-//   width: 300px;
-//   height: 150px;
-//
-// }
-
-#logo {
-	font-size: 26px;
-	font-weight: 700;
-	letter-spacing: -1px;
-	padding: 15px 0;
-	a {
-		color: #2F363E;
-	}
-  a:hover {
-    text-decoration: none;
-    color: green;
-  }
-}
 #content {
   margin: 0 auto 0 auto;
   width: 80%;
-}
-
-.dropdown-menu {
-  min-width: 70%;
-  padding: 2em;
 }

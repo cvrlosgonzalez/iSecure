@@ -12,26 +12,28 @@
     <div class="navbar-inner">
       <div class="container">
         <div id="logo" class="navbar-brand"><%= link_to "iSecure", root_path %></div>
-
-
-
-	        <% if user_signed_in? -%>
-            <ul class="nav navbar-nav navbar-right">
+        <div style="clear:both">
+        <div><img id='nestlogo' src="http://www.lg.com/us/discover/smartthinq/images/nest_logo.png" alt="" /></div>
+	        <% if user_signed_in? %>
+          <div class="user_menu">
+              <ul class="nav navbar-nav navbar-right flex">
               <li><%= link_to 'Add Cam', new_cam_path %></li>
               <li><%= link_to 'Account', edit_user_registration_path %></li>
+              <li><%= link_to 'Cameras', cams_path %></li>
               <li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
             </ul>
-          <% else -%>
-						<ul class="nav navbar-nav pull-right">
-							<li><%= link_to 'Sign up', new_user_registration_path %></li>
+          </div>
+          <% else %>
+          <div class="user_menu">
+						<ul class="nav navbar-nav pull-right flex">
+              <li><%= link_to 'Sign up', new_user_registration_path %></li>
 							<li><%= link_to 'Sign in', new_user_session_path %></li>
 						</ul>
+          </div>
           <% end %>
-
   </div>
 </div>
 </header>
-  <img id='nestlogo' src="http://www.lg.com/us/discover/smartthinq/images/nest_logo.png" alt="" />
 <div id="main_content" class="container">
   <% flash.each do |name, msg| %>
         <%= content_tag(:div, msg, class: "alert alert-info") %>

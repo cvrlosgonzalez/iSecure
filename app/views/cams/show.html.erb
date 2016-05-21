@@ -1,75 +1,78 @@
 <%= hidden_field(:cam_id, "",:value => @cam.id) %>
+<%= hidden_field(:page_name, "",:value => 'cam_page') %>
 
-<div id = "dashboard" class="flex">
-  <div id ="cam_status" class="stat">Camera's Power ..</span></div>
-  <div id ="alert_status" class="stat">Alerts being saved? ..</div>
-  <div id ="text_status" class="stat">Text message status ..</div>
-</div>
+<div id="dash_container" class="grey_container">
 
-<p>
-  <strong>Camera name: </strong><%= @cam.title %>
+<p><h1><strong>Camera status </strong></h1></p>
+
+  <div id = "dashboard" class="flex">
+    <div id ="cam_status" class="stat">Camera's Power ..</span></div>
+    <div id ="alert_status" class="stat">Alerts being saved? ..</div>
+    <div id ="text_status" class="stat">Text message status ..</div>
+  </div>
+
+  <%#manage camera settings pulldown menu start %>
+  <div class="dropdown camera_setting_menu">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Manage Camera Settings
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+        <li><strong>Power</strong> - Turn the camera's power on/off</li>
+
+        <div id="power" class="switch-toggle well">
+          <input type="radio" name="cam_power" id="cam_power_true" value="true" class="cams_power" data-toggle="toggle">
+          <label for="cam_power_true" onclick="">On</label>
+
+          <input type="radio" name="cam_power" id="cam_power_false" value="false" class="cams_power" data-toggle="toggle">
+          <label for="cam_power_false" onclick="">Off</label>
+          <a class="btn btn-primary"></a>
+        </div>
+
+        <div id="alerts">
+          <li><strong>Alerts</strong> - Do you want to save alerts?</li>
+
+            <div class="switch-toggle well">
+              <input type="radio" name="monitor" id="monitor_on" value="on" class="monitor_toggle" data-toggle="toggle">
+              <label for="monitor_on" onclick="">On</label>
+
+              <input type="radio" name="monitor" id="monitor_off" value="off" class="monitor_toggle" data-toggle="toggle">
+              <label for="monitor_off" onclick="">Off</label>
+                <a class="btn btn-primary"></a>
+            </div>
+        </div>
+
+        <div id="texting">
+          <li><strong>Send Texts for Alerts</strong> - Do you want to receive text alerts?</li>
+
+            <div class="switch-toggle well">
+              <input type="radio" name="text_alert" id="text_alert_on" value="on" class="text_alert_toggle" data-toggle="toggle">
+              <label for="text_alert_on" onclick="">On</label>
+
+              <input type="radio" name="text_alert" id="text_alert_off" value="off" class="text_alert_toggle" data-toggle="toggle" checked="checked">
+              <label for="text_alert_off" onclick="">Off</label>
+                <a class="btn btn-primary"></a>
+            </div>
+        </div>
+        <br>
+    </ul>
+  </div>
+  <%#manage camera settings pulldown menu end %>
+
+  <h1><strong>Camera name: </strong><%= @cam.title %></h1>
   <ul>
     <li><strong><%= link_to 'Change Camera Name', edit_cam_path(@cam) %></li>
     <li><%= link_to 'See all Cameras', cams_path %></li></strong>
   </ul>
-</p>
 
-<div class="dropdown">
-  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Manage Camera Settings
-  <span class="caret"></span></button>
-  <ul class="dropdown-menu">
-
-      <li><strong>Power</strong> - Turn the camera's power on/off</li>
-
-      <div id="power" class="switch-toggle well">
-        <input type="radio" name="cam_power" id="cam_power_true" value="true" class="cams_power" data-toggle="toggle">
-        <label for="cam_power_true" onclick="">On</label>
-
-        <input type="radio" name="cam_power" id="cam_power_false" value="false" class="cams_power" data-toggle="toggle">
-        <label for="cam_power_false" onclick="">Off</label>
-        <a class="btn btn-primary"></a>
-      </div>
-
-      <div id="alerts">
-        <li><strong>Alerts</strong> - Do you want to save alerts?</li>
-
-          <div class="switch-toggle well">
-            <input type="radio" name="monitor" id="monitor_on" value="on" class="monitor_toggle" data-toggle="toggle">
-            <label for="monitor_on" onclick="">On</label>
-
-            <input type="radio" name="monitor" id="monitor_off" value="off" class="monitor_toggle" data-toggle="toggle">
-            <label for="monitor_off" onclick="">Off</label>
-              <a class="btn btn-primary"></a>
-          </div>
-      </div>
+</div> <%# close first block with dashboard %>
 
 
-      <div id="texting">
-        <li><strong>Send Texts for Alerts</strong> - Do you want to receive text alerts?</li>
+<div id="alerts_container" class="grey_container">
+  <!-- <div class="refresh_btn" > <input type="button" value="Refresh Page" onClick="window.location.reload()"> </div> -->
+  <%# display paginate menu %>
+  <div class="paginate">
+    <%= paginate @alerts %><br>
+  </div>
 
-          <div class="switch-toggle well">
-            <input type="radio" name="text_alert" id="text_alert_on" value="on" class="text_alert_toggle" data-toggle="toggle">
-            <label for="text_alert_on" onclick="">On</label>
-
-            <input type="radio" name="text_alert" id="text_alert_off" value="off" class="text_alert_toggle" data-toggle="toggle" checked="checked">
-            <label for="text_alert_off" onclick="">Off</label>
-              <a class="btn btn-primary"></a>
-          </div>
-      </div>
-      <br>
-
-  </ul>
-</div>
-
-<br>
-
-<div class="paginate">
-  <%= paginate @alerts %><br>
-</div>
-
-<div class="refresh_btn" > <input type="button" value="Refresh Page" onClick="window.location.reload()"> </div>
-
-<div id="alerts_container">
   <% @alerts.each do |alert|  %>
   <small>  <%= time_ago_in_words(alert.created_at)%> ago<br></small>
   <small>  <%= alert.created_at.strftime("%b %d, %Y") %> at <%= alert.created_at.strftime("%I:%M%P %Z") %><br></small>
@@ -82,6 +85,10 @@
       <% @send_text_status %>
     </div>
   <% end %>
+
+  <div class="paginate">
+    <%= paginate @alerts %><br>
+  </div>
 </div>
 
 <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
