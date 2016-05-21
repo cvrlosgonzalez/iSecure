@@ -197,8 +197,6 @@ set_text_alerts_to_off();
       ref.on ("child_changed", function(snapshot) {
         var resp = snapshot.val();
 
-        // var theFirstDiv = $('#alerts_container div:first-child').attr('id');
-        // console.dir('theFirstDiv is '+theFirstDiv);
         var theLastAlertDiv =  $( "#alerts_container div:first" ).attr('id');
         var newDivID = theLastAlertDiv + 1;
         var numDiv = parseInt(newDivID, 10);
@@ -217,13 +215,13 @@ set_text_alerts_to_off();
          console.log(theTime);
 // display image and hide anumated image. i dont think this is working because DOM has been rendered, so nothing is bound to this element.
         // $( '<div id="' + newDivID + '_imageholder" class="animated_display" style="display:none"> <img src="' + resp.animated_url + '" alt="" class="img-ani"></div>').prependTo( '#alerts_container');
-        $( '<small> New Alert! <br> ' + theTime + '<br></small> <div id="' + newDivID + '" style="display:block;>" ><img src="' + resp.animated_url + '" alt="" class="alert_photos" /></div>').prependTo( '#alerts_container');
+        $( '<small> New Alert! <br> ' + resp.last_alert + '<br></small> <div id="' + newDivID + '" style="display:block;>" ><img src="' + resp.animated_url + '" alt="" class="alert_photos" /></div>').prependTo( '#alerts_container');
         // $( '<small> New Alert! <br></small> <div id="' + newDivID + '" style="display:block;>" ><img src="' + resp.image_url + '" alt="" class="alert_photos" /></div>').prependTo( '#alerts_container');
 
           // $( '<img src="'+ resp.image_url + '" class="alert_photos"> <br><br>' ).prependTo( '#alerts_container' );
           // $( '<p>A new image is available. Refresh page to view details</p>' ).prependTo( '#alerts_container' );
-          // $('.refresh_btn').css("display", "block");
-          // $('.refresh_btn').css("color", "red");
+          $('.refresh_btn').css("display", "block");
+          $('.refresh_btn').css("color", "red");
           console.log('new alert! : '+ resp.last_alert);
           // ref.remove(); //can remove it, but since this data is in 'alerts' branch, no need to.
         }, function (errorObject) {
