@@ -41,7 +41,7 @@ function toggle_power(option){  //turn camera on or off
       } else {
         $('#cam_status').css("background-color", "red");
         $('#text_message').css("background-color", "red");
-        set_monitor_to_off_on_page_load();
+        set_monitor_to_off();
         set_text_alerts_to_off();
       }
     })
