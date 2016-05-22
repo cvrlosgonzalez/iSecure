@@ -48,8 +48,8 @@ h1 {
   border: dashed 1px #BBBBBB;
   margin: 0 0 20px 0;
   -webkit-box-shadow: 10px 10px 17px 1px rgba(112,112,112,0.94);
--moz-box-shadow: 10px 10px 17px 1px rgba(112,112,112,0.94);
-box-shadow: 10px 10px 17px 1px rgba(112,112,112,0.94);
+  -moz-box-shadow: 10px 10px 17px 1px rgba(112,112,112,0.94);
+  box-shadow: 10px 10px 17px 1px rgba(112,112,112,0.94);
 }
 // end status section
 .camera_setting_menu{
@@ -60,11 +60,13 @@ box-shadow: 10px 10px 17px 1px rgba(112,112,112,0.94);
   min-width: 70%;
   padding: 2em;
 }
-
+#drop_menu{
+  float:right;
+  margin-right:15px;
+}
 #alerts_container {
   width:10  0%;
   background-color: none;
-
 }
 /* header */
 .navbar-right {
