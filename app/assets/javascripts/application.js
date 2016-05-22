@@ -75,7 +75,7 @@ function status_check() {
 };
 
 function delete_image(del_id){
-  $('#'+ del_id).css("display","none");
+  $( '#'+ del_id ).toggle( "slide");
   $('#title_' + del_id).css("display","none");
   $('#' + del_id + '_imageholder').css("display","none");
 
