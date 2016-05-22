@@ -77,8 +77,8 @@
 
   <% @alerts.each do |alert|  %>
   <div id="title_<%= alert.id %>" class="titles">
-    <div class="delete_images" id="del_<%= alert.id %>"><img src="http://www.gatestoneinstitute.org/images/icons/close_24.png"></div>
-    <small>  <%= time_ago_in_words(alert.created_at)%> ago<br></small> <%= alert.id %>
+    <div class="delete_images" id="del_<%= alert.id %>"><img src="http://www.gatestoneinstitute.org/images/icons/close_24.png" width="15" height="15"></div>
+    <small class="title">  Alert# <%= alert.id %> was created <%= time_ago_in_words(alert.created_at)%> ago<br></small>
     <small>  <%= alert.created_at.strftime("%b %d, %Y") %> at <%= alert.created_at.strftime("%I:%M%P %Z") %><br></small>
   </div>
 
