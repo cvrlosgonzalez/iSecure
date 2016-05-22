@@ -76,8 +76,9 @@ function status_check() {
 
 function delete_image(del_id){
   $( '#'+ del_id ).toggle( "slide");
+  $('#' + del_id + '_imageholder').toggle("slide");
   $('#title_' + del_id).css("display","none");
-  $('#' + del_id + '_imageholder').css("display","none");
+  $('#' + del_id).css("display","none");
 
   $.ajax({
     url: "/delete_alert/" + del_id
