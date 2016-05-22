@@ -14,6 +14,7 @@ class CamsController < ApplicationController
     @alerts = Alert.order(created_at: :desc).page params[:page]
     # raise
     #  @alerts = Alert.page(params[:page]).per(12)
+    @user = current_user
   end
 
   # GET /cams/new
@@ -31,7 +32,7 @@ class CamsController < ApplicationController
   def create
     @cam = Cam.new(cam_params)
     @cam.user_id = current_user.id
-    
+
     respond_to do |format|
       if @cam.save
         format.html { redirect_to @cam, notice: 'Cam was successfully created.' }

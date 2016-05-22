@@ -259,6 +259,8 @@ if(page_name == "cam_page"){
             } else if (power == 'OFF') {
               $('#cam_status').css("background-color","red");
               $('#cam_power_false').prop('checked', true);
+              $('#cam_power_true').prop('checked', false);
+
 
               //if power is off, no alerts and no texts, both are unavailable as options
               $('#alerts').css("display","none");
@@ -323,6 +325,8 @@ if(page_name == "cam_page"){
           }, function (errorObject) {
           console.log("The read failed: " + errorObject.code);
           });
+
+
         };
 
         var page_name = $("#page_name_").attr('value')
@@ -332,6 +336,12 @@ if(page_name == "cam_page"){
           checkStatus();
         }
 
+        $('.stat').on("click", function(){
+          $('#drop_button').attr("aria-expanded",true);
+          // $('#drop_menu').removeClass("dropdown camera_setting_menu"
+          $('#drop_menu').addClass("open dropdown camera_setting_menu");
+          console.log('clicked panel');
+        });
 });
 
   function start() {

@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   # get '/monitor/ON' => 'monitor#monitor_on', as: :monitor_on
   get '/monitor_on/:id' => 'monitor#monitor_on', as: :monitor_on
   get '/monitor_off/:id' => 'monitor#monitor_off', as: :monitor_off
-  
+
   get '/status_check/:id' => 'monitor#status_check', as: :status_check
   # get '/monitorfire/:id/' => 'monitor#firebase'
   get 'monitorfire/:id' => 'monitor#show'
