@@ -74,25 +74,26 @@ function status_check() {
   })
 };
 
-function delete_image(del_id){
-  $( '#'+ del_id ).toggle( "slide");
-  $('#' + del_id + '_imageholder').toggle("slide");
-  $('#title_' + del_id).css("display","none");
-  $('#' + del_id).css("display","none");
-
+function delete_image(del_id) {
+  //if animated_url is displayed
+    if ( $('#' + del_id + '_imageholder').css('display') == 'block' ){
+        $('#'+ del_id + '_imageholder').slideToggle( "slow");
+        $('#'+ del_id ).slideToggle( "slow");
+        $('#title_' + del_id).slideToggle( "slow");
+        $('#' + del_id).css("display","none");
+    } else {
+  // if image_url is displayed
+    $('#'+ del_id ).slideToggle( "slow", function() {
+      $('#title_' + del_id).css("display","none");
+      $('#' + del_id).css("display","none");
+      $('#' + del_id + '_imageholder').css("display","none");
+    });
+  };
   $.ajax({
     url: "/delete_alert/" + del_id
   })
 };
 //----------document ready below------------------------------
-
-// block_toggle('alert', "Alerts being saved? NO", 'block' , red)
-//
-// function block_toggle(clas, msg, disp, *){
-//   $('#'+ clas + '_status').text(msg);
-//   $('#alert_status').css("background-color", "red");
-//   $('#alert_status').css("display", "block");
-// }
 
 $( document ).ready(function() {
 //make sure we are on the cams page to set texts to off.
@@ -343,9 +344,7 @@ if(page_name == "cam_page"){
           checkStatus();
         }
 
-        $('.delete_images').on("click", function() {
-            // console.log('delete clicked');
-            // delete_image();
+        $('.delete_images').on("click", function(event) {
             var id = $(this).attr('id');
             var id_del = id.replace(/del_/i, '');
             console.log('id to delete is '+ id_del);
@@ -353,7 +352,7 @@ if(page_name == "cam_page"){
         });
 });
 
-  function start() {
-    // set_monitor_to_off();
-  }
-  window.onload = start;
+  // function start() {
+  //   // set_monitor_to_off();
+  // }
+  // window.onload = start;
