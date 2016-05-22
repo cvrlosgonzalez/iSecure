@@ -74,6 +74,15 @@ function status_check() {
   })
 };
 
+function delete_image(del_id){
+  $('#'+ del_id).css("display","none");
+  $('#title_' + del_id).css("display","none");
+  $('#' + del_id + '_imageholder').css("display","none");
+
+  $.ajax({
+    url: "/delete_alert/" + del_id
+  })
+};
 //----------document ready below------------------------------
 
 // block_toggle('alert', "Alerts being saved? NO", 'block' , red)
@@ -259,8 +268,6 @@ if(page_name == "cam_page"){
             } else if (power == 'OFF') {
               $('#cam_status').css("background-color","red");
               $('#cam_power_false').prop('checked', true);
-              $('#cam_power_true').prop('checked', false);
-
 
               //if power is off, no alerts and no texts, both are unavailable as options
               $('#alerts').css("display","none");
@@ -326,7 +333,6 @@ if(page_name == "cam_page"){
           console.log("The read failed: " + errorObject.code);
           });
 
-
         };
 
         var page_name = $("#page_name_").attr('value')
@@ -336,11 +342,13 @@ if(page_name == "cam_page"){
           checkStatus();
         }
 
-        $('.stat').on("click", function(){
-          $('#drop_button').attr("aria-expanded",true);
-          // $('#drop_menu').removeClass("dropdown camera_setting_menu"
-          $('#drop_menu').addClass("open dropdown camera_setting_menu");
-          console.log('clicked panel');
+        $('.delete_images').on("click", function() {
+            // console.log('delete clicked');
+            // delete_image();
+            var id = $(this).attr('id');
+            var id_del = id.replace(/del_/i, '');
+            console.log('id to delete is '+ id_del);
+            delete_image(id_del);
         });
 });
 
