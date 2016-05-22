@@ -83,8 +83,8 @@ function delete_image(del_id) {
         $('#' + del_id).css("display","none");
     } else {
   // if image_url is displayed
+    $('#title_' + del_id).slideToggle( "slow");
     $('#'+ del_id ).slideToggle( "slow", function() {
-      $('#title_' + del_id).css("display","none");
       $('#' + del_id).css("display","none");
       $('#' + del_id + '_imageholder').css("display","none");
     });
