@@ -1,35 +1,34 @@
+<div class="grey_container">
 
-
-
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @cams.each do |cam| %>
+  <table>
+    <thead>
       <tr>
-        <td><%= cam.alert %></td>
-        <%= cam.title %>
-        <% @alert = Alert.last.image_url %>
-        <img id='index_img'>  <%= link_to(image_tag(@alert), cam)  %> </img>
-
-
-        <div class="dropdown">
-          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">&#128276;
-          <span class="caret"></span></button>
-          <ul class="dropdown-menu">
-        <li class="btn btn-default btn-sm"><%= link_to 'Alerts', cam %></li>
-        <li class="btn btn-default btn-sm"><%= link_to 'Edit', edit_cam_path(cam) %></li>
-        <li class="btn btn-default btn-sm"><%= link_to 'Remove', cam, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+        <th colspan="3"></th>
       </tr>
-    </ul>
-  </div>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <h1> List of Cameras </h1>
+      <% @cams.each do |cam| %>
+        <tr>
+          <td><%= cam.alert %></td>
+          <%= cam.title %>
+          <% @alert = Alert.last.image_url %>
+          <img id='index_img'>  <%# = link_to(image_tag(@alert), cam)  %> </img>
+
+
+          <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Camera Detail &#128276;
+            <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+          <li class="btn btn-default btn-sm"><%= link_to 'Control Camera', cam %></li>
+          <li class="btn btn-default btn-sm"><%= link_to 'Edit', edit_cam_path(cam) %></li>
+          <li class="btn btn-default btn-sm"><%= link_to 'Remove', cam, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+        </tr>
+      </ul>
+    </div>
+      <% end %>
+    </tbody>
+  </table>
+  <p></p>
+</div>

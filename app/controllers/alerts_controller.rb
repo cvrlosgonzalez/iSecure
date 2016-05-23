@@ -18,6 +18,14 @@ require 'pp'
        @alert = Alert.new
     end
 
+  def delete
+    id_del = params[:id]
+    del = Alert.find(id_del).destroy
+    p "in delete controller, params is #{id_del}"
+    p "in delete controller,items is #{del.id}"
+    redirect_to cams_path
+  end
+
   def create
     @user = current_user
     @alert = Alert.new(alert_params)
