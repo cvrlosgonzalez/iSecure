@@ -76,22 +76,23 @@
   </div>
 
   <% @alerts.each do |alert|  %>
-  <div id="title_<%= alert.id %>" class="titles">
-    <div class="delete_images" id="del_<%= alert.id %>"><img src="http://www.gatestoneinstitute.org/images/icons/close_24.png" width="15" height="15"></div>
-    <small class="title">  Alert# <%= alert.id %> was created <%= time_ago_in_words(alert.created_at)%> ago<br></small>
-    <small>  <%= alert.created_at.strftime("%b %d, %Y") %> at <%= alert.created_at.strftime("%I:%M%P %Z") %><br></small>
-  </div>
-
-
-    <div id="<%= alert.id %>"  >
-        <img src="<%= alert.image_url %>" alt="" class="alert_photos" />
+  <div id="alert_bg_<%= alert.id %>" class="each_alert_image_set">
+    <div id="title_<%= alert.id %>" class="titles">
+      <div class="delete_images" id="del_<%= alert.id %>"><img src="http://www.gatestoneinstitute.org/images/icons/close_24.png" width="15" height="15"></div>
+      <small class="alert_title">  Alert# <%= alert.id %> was created <%= time_ago_in_words(alert.created_at)%> ago<br></small>
+      <small>  <%= alert.created_at.strftime("%b %d, %Y") %> at <%= alert.created_at.strftime("%I:%M%P %Z") %><br></small>
     </div>
-    <div id="<%= alert.id %>_imageholder" class="animated_display">
-      <img src="<%=alert.animated_url%>" alt="" class="img-ani" >
-      <% @send_text_status %>
+
+
+      <div id="<%= alert.id %>"  >
+          <img src="<%= alert.image_url %>" alt="" class="alert_photos" />
+      </div>
+      <div id="<%= alert.id %>_imageholder" class="animated_display">
+        <img src="<%=alert.animated_url%>" alt="" class="img-ani" >
+        <% @send_text_status %>
+      </div>
     </div>
   <% end %>
-
   <div class="paginate">
     <%= paginate @alerts %><br>
   </div>

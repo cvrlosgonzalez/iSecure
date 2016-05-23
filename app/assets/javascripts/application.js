@@ -74,19 +74,40 @@ function status_check() {
   })
 };
 
-function delete_image(del_id) {
+// function explode(id){
+//   $( '#'id"#effect" ).effect( "explode");
+// };
+//
+// // callback function to bring a hidden box back
+// function callback() {
+//   setTimeout(function() {
+//     $( "#effect" ).removeAttr( "style" ).hide().fadeIn();
+//     }, 1000 );
+//   };
+
+
+function slide_bg(del_id){
+  // $('#alert_bg_' + del_id).click(function(){
+  $('#alert_bg_' + del_id).css("background-color", "#FFF2FA");
+    $('#alert_bg_' + del_id).slideUp(500, "swing");
+  // });
+};
+
+  function delete_image(del_id) {
   //if animated_url is displayed
     if ( $('#' + del_id + '_imageholder').css('display') == 'block' ){
         $('#'+ del_id + '_imageholder').slideToggle( "slow");
         $('#'+ del_id ).slideToggle( "slow");
         $('#title_' + del_id).slideToggle( "slow");
         $('#' + del_id).css("display","none");
+        slide_bg(del_id);
     } else {
   // if image_url is displayed
     $('#title_' + del_id).slideToggle( "slow");
     $('#'+ del_id ).slideToggle( "slow", function() {
       $('#' + del_id).css("display","none");
       $('#' + del_id + '_imageholder').css("display","none");
+       slide_bg(del_id);
     });
   };
   $.ajax({
@@ -118,11 +139,12 @@ if(page_name == "cam_page"){
       if(user_option == "ON"){
         var ref = new Firebase('wss://developer-api.nest.com');
         toggle_power(option);
+        // $('#cam_power_true').prop('checked', true);
         $('#monitor_off').prop('checked', true); //alerts will be off when power is turned on.
-
       } else if (user_option == "OFF") {
         var ref = new Firebase('wss://developer-api.nest.com');
         toggle_power(option);
+        // $('#cam_power_false').prop('checked', true);
         //show alerts as off
         $('#alert_status').text("Alerts being saved? NO");
         $('#alert_status').css("background-color", "red");
@@ -224,10 +246,6 @@ if(page_name == "cam_page"){
         var numDiv = numDiv + 1;
         console.dir('theDiv is '+ newDivID);
         console.dir('numDiv is '+ numDiv);
-        var randomNum = Math.floor(Math.random() * 200);
-        console.log('Randon num is >' + randomNum);
-        var theTime = Math.round(new Date().getTime()/1000);
-         console.log(theTime);
 // display image and hide anumated image. i dont think this is working because DOM has been rendered, so nothing is bound to this element.
         // $( '<div id="' + newDivID + '_imageholder" class="animated_display" style="display:none"> <img src="' + resp.animated_url + '" alt="" class="img-ani"></div>').prependTo( '#alerts_container');
         $( '<small><a href="#" onClick="window.location.reload()"> New Alert! click here to refresh page for more detail.</a> <br> ' + resp.last_alert + '<br></small> <div id="' + newDivID + '" style="display:block;>" ><img src="' + resp.animated_url + '" alt="" class="alert_photos" /></div>').prependTo( '#alerts_container');
@@ -270,7 +288,6 @@ if(page_name == "cam_page"){
             } else if (power == 'OFF') {
               $('#cam_status').css("background-color","red");
               $('#cam_power_false').prop('checked', true);
-
               //if power is off, no alerts and no texts, both are unavailable as options
               $('#alerts').css("display","none");
               $('#texting').css("display", "none");
