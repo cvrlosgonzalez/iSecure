@@ -85,10 +85,9 @@ function status_check() {
 //     }, 1000 );
 //   };
 
-
 function slide_bg(del_id){
   // $('#alert_bg_' + del_id).click(function(){
-  $('#alert_bg_' + del_id).css("background-color", "#FFF2FA");
+  $('#alert_bg_' + del_id).css("background", "linear-gradient(to bottom, #feccb1 0%,#f17432 50%,#ea5507 51%,#fb955e 100%)"); //dark red #FD0E0E, lighter #FFF2FA
     $('#alert_bg_' + del_id).slideUp(500, "swing");
   // });
 };

@@ -80,7 +80,9 @@ h1 {
   border: dashed 1px #BBBBBB;
   margin: 5%;
   border-radius: 25px;
-  background-color: #FFF2F2; /* #FFEDED; */
+  background: linear-gradient(to bottom, #ffdbe2 0%,#ffe1e7 50%,#ffd5de 51%,#ffd5de 71%,#ffd7e1 100%);
+  // background: linear-gradient(to bottom, #f85032 0%,#f16f5c 50%,#f6290c 51%,#f02f17 71%,#e73827 100%);
+  // background-color: #FFF2F2; /* #FFEDED; */
   padding:25px;
   width: 90%;
   align-content: center;
