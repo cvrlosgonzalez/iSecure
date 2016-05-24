@@ -2,7 +2,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 body {
-  background-image: url("./blueback.jpg")
+  background-image: url("http://pic.1fotonin.com/data/wallpapers/194/WDF_2326128.jpg")
 }
 h1 {
   font-size: 1.2em;
@@ -97,23 +97,22 @@ h1 {
   width: 100px;
   height: 40px;
   margin: 0 auto;
-  margin-left: 10px;
-}
-
-#logo {
-	font-size: 26px;
-	font-weight: 700;
-	letter-spacing: -1px;
-  margin-left: 15px;
-	padding: 15px 0;
   margin-top: 10px;
-	a {
-		color: #2F363E;
-	}
-  a:hover {
-    text-decoration: none;
-    color: green;
-  }
+  margin-bottom: 15px;
+  margin-left: 30px;
+}
+.navbar-inner {
+  background-color: white
+}
+#user_menu {
+  margin-top: 30px;
+}
+#logo {
+  margin-top: 10px;
+  margin-left: 0px;
+  height: 125px;
+  position: fixed;
+  top: 15px;
 }
 
 

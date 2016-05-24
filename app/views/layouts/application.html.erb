@@ -8,41 +8,36 @@
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/css-toggle-switch/latest/toggle-switch.css" />
 </head>
 <body>
-  <header class="navbar navbar-default" role="navigation">
-    <div class="navbar-inner">
-        <div id="logo" class="navbar-brand"><%= link_to "iSecure", root_path %></div>
-      <div class="container">
+<div class="container">
+<img src="" alt="" />
+  <div style="clear:both">
 
-        <div style="clear:both">
+    <% if user_signed_in? %>
 
-	        <% if user_signed_in? %>
-
-          <div id='user_menu'class="dropdown pull-right">
-              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">	&#128249;
-              <span class="caret"></span></button>
-              <ul class="dropdown-menu">
-                <li class="dropdown-header">All Cameras</li>
-                  <li><%= link_to 'Add Cam', new_cam_path %></li>
-                <li><%= link_to 'Cameras', cams_path %></li>
-                <li class="divider"></li>
-                <li class="dropdown-header">Account</li>
-                <li><%= link_to 'Account', edit_user_registration_path %></li>
-                <li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
-              </ul>
-            </div>
-          </div>
-          <% else %>
-          <div id="user_menu">
-						<ul class="nav navbar-nav pull-right flex">
-              <li><%= link_to 'Sign up', new_user_registration_path %></li>
-							<li><%= link_to 'Sign in', new_user_session_path %></li>
-						</ul>
-          </div>
-          <% end %>
-  </div>
-</div>
-</header>
-      <div><img id='nestlogo' src="http://www.lg.com/us/discover/smartthinq/images/nest_logo.png" alt="" /></div>
+    <div id='user_menu'class="dropdown pull-right">
+        <button class="btn btn-default btn-lg dropdown-toggle" type="button" data-toggle="dropdown">&#9881;
+        <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+          <li class="dropdown-header">Cameras</li>
+            <li><%= link_to 'Add Cam', new_cam_path %></li>
+          <li><%= link_to 'All Cameras', cams_path %></li>
+          <li class="divider"></li>
+          <li class="dropdown-header">Account</li>
+          <li><%= link_to 'Account', edit_user_registration_path %></li>
+          <li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
+        </ul>
+      </div>
+    </div>
+    <% else %>
+    <div id="user_menu">
+      <ul class="nav navbar-nav pull-right flex">
+        <li><%= link_to 'Sign up', new_user_registration_path %></li>
+        <li><%= link_to 'Sign in', new_user_session_path %></li>
+      </ul>
+    </div>
+    <% end %>
+    <img id='logo' src="http://s33.postimg.org/gie8t3kcf/isecurelogo_trans.png" alt="" />
+      <!-- <div><img id='nestlogo' src="http://www.lg.com/us/discover/smartthinq/images/nest_logo.png" alt="" /></div> -->
 <div id="main_content" class="container">
   <% flash.each do |name, msg| %>
         <%= content_tag(:div, msg, class: "alert alert-info") %>

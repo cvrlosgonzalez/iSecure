@@ -1,3 +1,4 @@
+<% if user_signed_in? %>
 <div class="grey_container">
 
   <table>
@@ -27,7 +28,11 @@
         </tr>
       </ul>
     </div>
+
       <% end %>
+          <%else%>
+          Please create an account
+          <%end%>
     </tbody>
   </table>
   <p></p>
