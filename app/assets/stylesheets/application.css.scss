@@ -104,14 +104,11 @@ h1 {
 .navbar-inner {
   background-color: white
 }
-#user_menu {
-  margin-top: 30px;
-}
 #logo {
   margin-top: 10px;
   margin-left: 0px;
   height: 125px;
-  position: fixed;
+  position: absolute;
   top: 15px;
 }
 

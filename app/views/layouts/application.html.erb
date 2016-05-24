@@ -30,7 +30,7 @@
     </div>
     <% else %>
     <div id="user_menu">
-      <ul class="nav navbar-nav pull-right flex">
+      <ul class="nav navbar-nav flex">
         <li><%= link_to 'Sign up', new_user_registration_path %></li>
         <li><%= link_to 'Sign in', new_user_session_path %></li>
       </ul>
@@ -38,14 +38,15 @@
     <% end %>
     <img id='logo' src="http://s33.postimg.org/gie8t3kcf/isecurelogo_trans.png" alt="" />
       <!-- <div><img id='nestlogo' src="http://www.lg.com/us/discover/smartthinq/images/nest_logo.png" alt="" /></div> -->
-<div id="main_content" class="container">
-  <% flash.each do |name, msg| %>
-        <%= content_tag(:div, msg, class: "alert alert-info") %>
-  <% end %>
+
 <div id="content" class="col-md-9 center-block">
 <%= yield %>
 </div>
 </div>
 </div>
+<div id="main_content" class="container">
+  <% flash.each do |name, msg| %>
+        <%= content_tag(:div, msg, class: "alert alert-info") %>
+  <% end %>
 </body>
 </html>
