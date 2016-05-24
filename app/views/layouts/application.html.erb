@@ -10,11 +10,15 @@
 <body>
   <header class="navbar navbar-default" role="navigation">
     <div class="navbar-inner">
+<img id='piclogo'src='https://i.imgsafe.org/6baafda.png' alt="" />
+
+
+
       <div class="container">
         <div id="logo" class="navbar-brand"><%= link_to "iSecure", root_path %></div>
         <div style="clear:both">
-        <div><img id='nestlogo' src="http://www.lg.com/us/discover/smartthinq/images/nest_logo.png" alt="" /></div>
-	        <% if user_signed_in? %>
+        <!-- <div><img id='nestlogo' src="http://www.lg.com/us/discover/smartthinq/images/nest_logo.png" alt="" /></div> -->
+            <% if user_signed_in? %>
           <div class="user_menu">
               <ul class="nav navbar-nav navbar-right flex">
               <li><%= link_to 'Add Cam', new_cam_path %></li>
@@ -25,10 +29,10 @@
           </div>
           <% else %>
           <div class="user_menu">
-						<ul class="nav navbar-nav pull-right flex">
+                        <ul class="nav navbar-nav pull-right flex">
               <li><%= link_to 'Sign up', new_user_registration_path %></li>
-							<li><%= link_to 'Sign in', new_user_session_path %></li>
-						</ul>
+                            <li><%= link_to 'Sign in', new_user_session_path %></li>
+                        </ul>
           </div>
           <% end %>
   </div>
