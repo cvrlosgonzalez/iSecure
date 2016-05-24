@@ -2,10 +2,18 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 body {
-  background-image: url("./blueback.jpg")
+  background: linear-gradient(135deg, rgba(167,207,223,1) 0%,rgba(35,83,138,1) 24%,rgba(35,83,138,1) 24%,rgba(167,207,223,1) 77%,rgba(35,83,138,1) 100%);
+  // background-color:#929292;
+  height: 100%;
+  margin: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 h1 {
-  font-size: 1.2em;
+  font-size: 2.0em;
+  color: blue;
+  margin: 0 auto;
+  padding-bottom: 1em;
 }
  /* dashboard */
 .cams_power {
@@ -81,7 +89,8 @@ h1 {
   border: dashed 1px #BBBBBB;
   margin: 5%;
   border-radius: 25px;
-  background: linear-gradient(to bottom, #ffdbe2 0%,#ffe1e7 50%,#ffd5de 51%,#ffd5de 71%,#ffd7e1 100%);
+  background: linear-gradient(to bottom, rgba(242,130,91,1) 0%,rgba(242,130,91,1) 21%,rgba(242,130,91,1) 21%,rgba(229,91,43,1) 32%,rgba(240,113,70,1) 88%,rgba(240,113,70,1) 88%,rgba(242,130,91,1) 97%);
+  // background: linear-gradient(to bottom, #ffdbe2 0%,#ffe1e7 50%,#ffd5de 51%,#ffd5de 71%,#ffd7e1 100%);
   // background: linear-gradient(to bottom, #f85032 0%,#f16f5c 50%,#f6290c 51%,#f02f17 71%,#e73827 100%);
   // background-color: #FFF2F2; /* #FFEDED; */
   padding:25px;
@@ -116,6 +125,83 @@ h1 {
   }
 }
 
+.user_menu{
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  display:inline-block;
+}
+// input[type=text], input[type=password], input[type=email]{
+//   // background-color: #0b2391;  /* making sure all inputs are affected */
+//   font-size: 2em;
+//   padding: .2em;
+//   margin: 0 .5em .5em .5em;
+// }
+/* https://css-tricks.com/snippets/css/glowing-blue-input-highlights/ */
+input[type=text], input[type=password], input[type=email] {
+  -webkit-transition: all 0.30s ease-in-out;
+  -moz-transition: all 0.30s ease-in-out;
+  -ms-transition: all 0.30s ease-in-out;
+  -o-transition: all 0.30s ease-in-out;
+  outline: none;
+  // padding: 3px 0px 3px 3px;
+  // margin: 5px 1px 3px 0px;
+  border: 1px solid #DDDDDD;
+  // my additions
+  font-size: 2em;
+  padding: .2em;
+  margin: 0 .5em .5em .5em;
+  width: 95%;
+}
+/* https://css-tricks.com/snippets/css/glowing-blue-input-highlights/ */
+input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
+  box-shadow: 0 0 5px #0b2391; /* rgba(81, 203, 238, 1);*/
+  // padding: 3px 0px 3px 3px;
+  // margin: 5px 1px 3px 0px;
+  border: 1px solid #0b2391; /* rgba(81, 203, 238, 1); */
+  // my additions
+  font-size: 2em;
+  padding: .2em;
+  margin: 0 .5em .5em .7em;
+  width: 95%;
+}
+input[type=submit]{
+  margin: .5em 0 1em 0;
+}
+/* list cameras page */
+.cam_list_main_container{
+  margin: 1em 0;
+  display:block;
+  overflow: auto;
+}
+.cam_list_container {
+  width: 80%;
+  margin:0 auto;
+  // padding: 1em;
+  display: flex;
+  flex-direction: row;
+}
+.cam_list{
+  margin: 0 2em;
+}
+.cam_list_item {
+  width: 6em;
+  // height: 6em;
+}
+// #edit_icon_img{ /* patch edit icon only */
+//   margin-bottom: 1.9  em;
+//   height: 6em;
+// }
+#remove_icon_img{ /* patch remove icon only */
+  margin-bottom: 1.7  em;
+  height: 6em;
+}
+#edit_link{
+  margin-top: .4em;
+}
+#delete_link{
+  margin-top: 1.7em;
+}
 
 /* header end */
 .paginate .pagination {
