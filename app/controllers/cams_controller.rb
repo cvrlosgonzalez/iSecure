@@ -11,7 +11,8 @@ class CamsController < ApplicationController
   # GET /cams/1
   # GET /cams/1.json
   def show
-    @alerts = Alert.order(created_at: :desc).page params[:page]
+    # @alerts = Alert.order(created_at: :desc).page params[:page]
+    @alerts = @cam.alerts.order(created_at: :desc).page params[:page]
     # raise
     #  @alerts = Alert.page(params[:page]).per(12)
     @user = current_user
@@ -35,8 +36,8 @@ class CamsController < ApplicationController
 
     respond_to do |format|
       if @cam.save
-        format.html { redirect_to @cam, notice: 'Cam was successfully created.' }
-        format.json { render :show, status: :created, location: @cam }
+        format.html { redirect_to cams_path, notice: 'Cam was successfully created.' }
+        format.json { render :show, status: :created, location: cams_path }
       else
         format.html { render :new }
         format.json { render json: @cam.errors, status: :unprocessable_entity }
@@ -49,8 +50,8 @@ class CamsController < ApplicationController
   def update
     respond_to do |format|
       if @cam.update(cam_params)
-        format.html { redirect_to @cam, notice: 'Cam was successfully updated.' }
-        format.json { render :show, status: :ok, location: @cam }
+        format.html { redirect_to cams_path, notice: 'Cam was successfully updated.' }
+        format.json { render :show, status: :ok, location: cams_path }
       else
         format.html { render :edit }
         format.json { render json: @cam.errors, status: :unprocessable_entity }
