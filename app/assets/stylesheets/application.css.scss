@@ -146,6 +146,7 @@ input[type=text], input[type=password], input[type=email] {
   font-size: 2em;
   padding: .2em;
   margin: 0 .5em .5em .5em;
+  width: 95%;
 }
 /* https://css-tricks.com/snippets/css/glowing-blue-input-highlights/ */
 input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
@@ -157,9 +158,10 @@ input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
   font-size: 2em;
   padding: .2em;
   margin: 0 .5em .5em .7em;
+  width: 95%;
 }
 input[type=submit]{
-  margin: .5em 0 1em 0;  
+  margin: .5em 0 1em 0;
 }
 
 /* header end */
