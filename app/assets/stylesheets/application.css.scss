@@ -8,7 +8,6 @@ body {
   margin: 0;
   background-repeat: no-repeat;
   background-attachment: fixed;
-
 }
 h1 {
   font-size: 2.0em;
@@ -68,7 +67,6 @@ h1 {
 .dropdown-menu {
   min-width: 70%;
   padding: 2em;
-  text-align: center;
 }
 #drop_menu{
   float:right;
@@ -113,39 +111,31 @@ h1 {
 #nestlogo{
   width: 100px;
   height: 40px;
-  margin: 0 auto;
-  margin-top: 10px;
-  margin-bottom: 15px;
-  margin-left: 30px;
+  margin: 0 0 15px 15px;
+  float: left;
 }
 
-.navbar-inner {
-  background-color: white
-
-
- #logo {
+#logo {
 	font-size: 26px;
 	font-weight: 700;
 	letter-spacing: -1px;
   margin-left: 35px;
 	padding: 15px 0;
-}
 	a {
 		color: #2F363E;
 	}
   a:hover {
     text-decoration: none;
     color: green;
-}
-}
-#logo {
-  margin-top: 10px;
-  margin-left: 0px;
-  height: 125px;
-  position: absolute;
-  top: 15px;
+  }
 }
 
+.user_menu{
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  display:inline-block;
+}
 // input[type=text], input[type=password], input[type=email]{
 //   // background-color: #0b2391;  /* making sure all inputs are affected */
 //   font-size: 2em;
@@ -190,9 +180,6 @@ input[type=submit]{
   overflow: auto;
 }
 .cam_list_container {
-  width: 80%;
-  margin:0 auto;
-  // padding: 1em;
   display: flex;
   flex-direction: row;
 }
@@ -212,12 +199,11 @@ input[type=submit]{
   height: 6em;
 }
 #edit_link{
-  margin-top: .4em;
+  margin-top: .3em;
 }
 #delete_link{
   margin-top: 1.7em;
 }
-
 /* header end */
 .paginate .pagination {
   text-align: right;
