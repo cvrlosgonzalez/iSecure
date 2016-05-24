@@ -116,10 +116,12 @@ h1 {
 }
 
 #logo {
+  position: absolute;
+  left: 50px;
+
 	font-size: 26px;
 	font-weight: 700;
 	letter-spacing: -1px;
-  margin-left: 35px;
 	padding: 15px 0;
 	a {
 		color: #2F363E;
@@ -204,6 +206,7 @@ input[type=submit]{
 #delete_link{
   margin-top: 1.7em;
 }
+
 /* header end */
 .paginate .pagination {
   text-align: right;

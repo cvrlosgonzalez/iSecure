@@ -10,21 +10,21 @@
 
     <tbody>
       <h1 class="h1_title"> List of Cameras </h1>
-      <% @cams.each do |cam| %>
-        <tr>
-          <td><%= cam.alert %></td>
-          <%= cam.title %>
-          <% @alert = Alert.last.image_url %>
-          <img id='index_img'>  <%# = link_to(image_tag(@alert), cam)  %> </img>
+        <% @cams.each do |cam| %>
+          <tr>
+            <td><%= cam.alert %></td>
+            <%= cam.title %>
+            <% @alert = Alert.last.image_url %>
+            <img id='index_img'>  <%# = link_to(image_tag(@alert), cam)  %> </img>
 
-<!-- <%= link_to image_tag("image.png", :alt => "Image Description", :class => "css"), root_path %> -->
+  <!-- <%= link_to image_tag("image.png", :alt => "Image Description", :class => "css"), root_path %> -->
 
-        <div class="cam_list_main_container">
-          <div class="cam_list_container">
-            <div id="cam_icon" class="cam_list">
-              <%= link_to image_tag("cam1.png", :class => "cam_list_item"),  cam %><br>
-              <%= link_to 'Control Camera', cam %>
-            </div>
+          <div class="cam_list_main_container">
+            <div class="cam_list_container">
+              <div id="cam_icon" class="cam_list">
+                <%= link_to image_tag("cam1.png", :class => "cam_list_item"),  cam %><br>
+                <%= link_to 'Control Camera', cam %>
+              </div>
             <div id="edit_icon" class="cam_list">
               <%= link_to image_tag("edit.png", :class => "cam_list_item", :id=>"edit_icon_img"),  edit_cam_path(cam) %><br>
              <br>
@@ -41,7 +41,9 @@
     </div>
 
       <% end %>
-          <%else%>
+
+  <%else%>
+
           <div class="grey_container">
 
             <h2> Welcome to iSecure.</h2>
