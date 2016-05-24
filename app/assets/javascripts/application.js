@@ -148,6 +148,7 @@ if(page_name == "cam_page"){
         $('#text_status').text("Text message status: " + user_option );
         $('#text_status').css("background-color", "red");
         $('#text_status').css("display", "block");
+        $('#cam_power_false').prop('checked', true);
       } else {
         $('#cam_status').text("No changes have been made to the camera's power status. ", "block");
       };
@@ -279,6 +280,7 @@ if(page_name == "cam_page"){
               $('#monitor_off').prop('checked', true);  //.css("checked", "checked") //default to monitor off!
               $('#alerts').css("display","block");
               $('#cam_power_true').prop('checked', true);
+              $('#cam_power_true').attr('checked', 'checked');
 
             } else if (power == 'OFF') {
               $('#cam_status').css("background-color","red");
@@ -296,7 +298,7 @@ if(page_name == "cam_page"){
             $('#alert_status').html('<div id="status_btn">Alerts being saved? ' + alertstatus + '</div>'); // status.save_alerts.toUpperCase() + '</div>');
             $('#alert_status').css("color","white");
             $('#cam_status').css("display", "block");
-            $('#cam_power_true').prop('checked', true);
+            // $('#cam_power_true').prop('checked', true);
 
 
             if(alerts == 'ON') {
