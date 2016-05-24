@@ -10,21 +10,29 @@
 <body>
   <header class="navbar navbar-default" role="navigation">
     <div class="navbar-inner">
-      <div class="container">
         <div id="logo" class="navbar-brand"><%= link_to "iSecure", root_path %></div>
+      <div class="container">
+
         <div style="clear:both">
-        <div><img id='nestlogo' src="http://www.lg.com/us/discover/smartthinq/images/nest_logo.png" alt="" /></div>
+
 	        <% if user_signed_in? %>
-          <div class="user_menu">
-              <ul class="nav navbar-nav navbar-right flex">
-              <li><%= link_to 'Add Cam', new_cam_path %></li>
-              <li><%= link_to 'Account', edit_user_registration_path %></li>
-              <li><%= link_to 'Cameras', cams_path %></li>
-              <li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
-            </ul>
+
+          <div id='user_menu'class="dropdown pull-right">
+              <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">	&#128249;
+              <span class="caret"></span></button>
+              <ul class="dropdown-menu">
+                <li class="dropdown-header">All Cameras</li>
+                  <li><%= link_to 'Add Cam', new_cam_path %></li>
+                <li><%= link_to 'Cameras', cams_path %></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Account</li>
+                <li><%= link_to 'Account', edit_user_registration_path %></li>
+                <li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
+              </ul>
+            </div>
           </div>
           <% else %>
-          <div class="user_menu">
+          <div id="user_menu">
 						<ul class="nav navbar-nav pull-right flex">
               <li><%= link_to 'Sign up', new_user_registration_path %></li>
 							<li><%= link_to 'Sign in', new_user_session_path %></li>
@@ -34,6 +42,7 @@
   </div>
 </div>
 </header>
+      <div><img id='nestlogo' src="http://www.lg.com/us/discover/smartthinq/images/nest_logo.png" alt="" /></div>
 <div id="main_content" class="container">
   <% flash.each do |name, msg| %>
         <%= content_tag(:div, msg, class: "alert alert-info") %>
