@@ -103,6 +103,11 @@ function slide_bg(del_id){
     $('#alert_bg_' + del_id).slideUp(500, "swing");
   // });
 };
+
+// if we wanted a variation of bg gradient on cams page..
+function set_bg_for_cam_page(){
+  $('body').css("background","linear-gradient(135deg, rgba(167,207,223,1) 0%,rgba(35,83,138,1) 24%,rgba(35,83,138,1) 24%,rgba(167,207,223,1) 77%,rgba(35,83,138,1) 100%)" )
+}
 //----------document ready below------------------------------
 
 $( document ).ready(function() {
@@ -113,6 +118,7 @@ if(page_name == "cam_page"){
   $('#texting').css("display", "none");
   status_check(); //check firebase to update status of power, alerts and texts
   set_text_alerts_to_off();
+  // set_bg_for_cam_page(); // call this and adjust colors in function, if we wanted a variation of bg gradient on cams page..
 }
 // $('#monitor_off').prop('checked', true);
 // set_monitor_to_off();
