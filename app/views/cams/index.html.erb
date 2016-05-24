@@ -1,3 +1,4 @@
+<% if user_signed_in? %>
 <div class="grey_container">
 
   <table>
@@ -9,37 +10,57 @@
 
     <tbody>
       <h1 class="h1_title"> List of Cameras </h1>
-      <% @cams.each do |cam| %>
-        <tr>
-          <td><%= cam.alert %></td>
-          <%= cam.title %>
-          <% @alert = Alert.last.image_url %>
-          <img id='index_img'>  <%# = link_to(image_tag(@alert), cam)  %> </img>
+        <% @cams.each do |cam| %>
+          <tr>
+            <td><%= cam.alert %></td>
+            <%= cam.title %>
+            <% @alert = Alert.last.image_url %>
+            <img id='index_img'>  <%# = link_to(image_tag(@alert), cam)  %> </img>
 
-<!-- <%= link_to image_tag("image.png", :alt => "Image Description", :class => "css"), root_path %> -->
+  <!-- <%= link_to image_tag("image.png", :alt => "Image Description", :class => "css"), root_path %> -->
 
-        <div class="cam_list_main_container">
-          <div class="cam_list_container">
-            <div id="cam_icon" class="cam_list">
-              <%= link_to image_tag("cam1.png", :class => "cam_list_item"),  cam %><br>
-              <%= link_to 'Control Camera', cam %>
+          <div class="cam_list_main_container">
+            <div class="cam_list_container">
+              <div id="cam_icon" class="cam_list">
+                <%= link_to image_tag("cam1.png", :class => "cam_list_item"),  cam %><br>
+                <%= link_to 'Control Camera', cam %>
+              </div>
+              <div id="edit_icon" class="cam_list">
+                <%= link_to image_tag("edit.png", :class => "cam_list_item", :id=>"edit_icon_img"),  edit_cam_path(cam) %><br>
+               <br>
+                  <div id="edit_link"><%= link_to 'Edit Camera Name', edit_cam_path(cam) %></div>
+              </div>
+              <div id="remove_icon" class="cam_list">
+                <%= link_to image_tag("delete.jpg", :class => "cam_list_item", :id=>"remove_icon_img"),  cam, method: :delete, data: { confirm: 'Are you sure?' } %><br>
+                <div id="delete_link"><%= link_to 'Delete Camera', cam, method: :delete, data: { confirm: 'Are you sure?' } %></div>
+                <!-- <li class="btn btn-default btn-sm"><%= link_to 'Remove', cam, method: :delete, data: { confirm: 'Are you sure?' } %></li> -->
+              </div>
             </div>
-            <div id="edit_icon" class="cam_list">
-              <%= link_to image_tag("edit.png", :class => "cam_list_item", :id=>"edit_icon_img"),  edit_cam_path(cam) %><br>
-             <br>
-                <div id="edit_link"><%= link_to 'Edit Camera Name', edit_cam_path(cam) %></div>
-            </div>
-            <div id="remove_icon" class="cam_list">
-              <%= link_to image_tag("delete.jpg", :class => "cam_list_item", :id=>"remove_icon_img"),  cam, method: :delete, data: { confirm: 'Are you sure?' } %><br>
-              <div id="delete_link"><%= link_to 'Delete Camera', cam, method: :delete, data: { confirm: 'Are you sure?' } %></div>
-              <!-- <li class="btn btn-default btn-sm"><%= link_to 'Remove', cam, method: :delete, data: { confirm: 'Are you sure?' } %></li> -->
-            </div>
-          </div>
-        </tr>
-      <!-- </ul> -->
-    <!-- </div> -->
-      <% end %>
-    </tbody>
-  </table>
-  <p></p>
+          </tr>
+
+        <% end %>
+  <%else%>
+          <div class="grey_container">
+
+            <h2> Welcome to iSecure.</h2>
+
+    <h3>According to the FBI..</h3>
+
+<p>There were an estimated 8,277,829 property crimes (burglaries, larceny-thefts,
+and motor vehicle thefts) reported by law enforcement. Financial losses suffered
+by victims of these crimes were calculated at approximately $14.3 billion.</p>
+
+<p>Only 17% of the homes in U.S. have a security system.
+
+iSecure, along with Google Nest, are here to change that.</p>
+<p>
+
+<strong>Our goal is to provide a low cost solution to 24/7 video monitoring with text message alerts</strong>
+</p>
+<p>Receive near instant motion/sound activated alerts straight to your mobile device. iSecure
+will send you an animated image showing you what set that event off.</p>
+
+<p> Get Started  <a href="https://nest.com"><img id='nestlogo' src="http://www.lg.com/us/discover/smartthinq/images/nest_logo.png" alt="" /></a>
+</p>
 </div>
+      <%end%>

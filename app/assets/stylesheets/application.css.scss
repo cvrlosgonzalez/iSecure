@@ -106,23 +106,19 @@ h1 {
   width: 100px;
   height: 40px;
   margin: 0 auto;
-  margin-left: 10px;
-}
-
-#logo {
-	font-size: 26px;
-	font-weight: 700;
-	letter-spacing: -1px;
-  margin-left: 15px;
-	padding: 15px 0;
   margin-top: 10px;
-	a {
-		color: #2F363E;
-	}
-  a:hover {
-    text-decoration: none;
-    color: green;
-  }
+  margin-bottom: 15px;
+  margin-left: 30px;
+}
+.navbar-inner {
+  background-color: white
+}
+#logo {
+  margin-top: 10px;
+  margin-left: 0px;
+  height: 125px;
+  position: absolute;
+  top: 15px;
 }
 
 .user_menu{
