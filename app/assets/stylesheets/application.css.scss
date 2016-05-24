@@ -2,8 +2,8 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 body {
-  background: linear-gradient(135deg, rgba(167,207,223,1) 0%,rgba(35,83,138,1) 24%,rgba(35,83,138,1) 24%,rgba(167,207,223,1) 77%,rgba(35,83,138,1) 100%);
-  // background-color:#929292;
+  // background: linear-gradient(135deg, rgba(167,207,223,1) 0%,rgba(35,83,138,1) 24%,rgba(35,83,138,1) 24%,rgba(167,207,223,1) 77%,rgba(35,83,138,1) 100%);
+  background-color:#929292;
 }
 h1 {
   font-size: 1.2em;
@@ -122,6 +122,31 @@ h1 {
   right: 0px;
   display:inline-block;
 }
+input[type=text], input[type=password], input[type=email]{
+  // background-color: #0b2391;  /* making sure all inputs are affected */
+  font-size: 2em;
+  padding: .2em;
+  margin: 0 .5em .5em .5em;
+}
+/* https://css-tricks.com/snippets/css/glowing-blue-input-highlights/ */
+input[type=text], input[type=password], input[type=email] {
+  -webkit-transition: all 0.30s ease-in-out;
+  -moz-transition: all 0.30s ease-in-out;
+  -ms-transition: all 0.30s ease-in-out;
+  -o-transition: all 0.30s ease-in-out;
+  outline: none;
+  padding: 3px 0px 3px 3px;
+  margin: 5px 1px 3px 0px;
+  border: 1px solid #DDDDDD;
+}
+
+input[type=text]:focus, input[type=password]:focus, input[type=email]:focus {
+  box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+  padding: 3px 0px 3px 3px;
+  margin: 5px 1px 3px 0px;
+  border: 1px solid rgba(81, 203, 238, 1);
+}
+
 /* header end */
 .paginate .pagination {
   text-align: right;
